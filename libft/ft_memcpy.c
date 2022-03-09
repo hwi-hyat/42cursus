@@ -1,11 +1,17 @@
+#include<stdlib.h>
+
 void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
-	int	i;
+	unsigned long		i;
+	char				*cdst;
+	char				*csrc;
 
+	cdst = dst;
+	csrc = src;
 	i = 0;
-	while(i < n && dst[i] && src[i])
+	while(i < n && cdst[i] && csrc[i])
 	{
-		dst[i] = src[i];
+		cdst[i] = csrc[i];
 		i++;
 	}
 }
