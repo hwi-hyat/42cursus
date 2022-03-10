@@ -2,10 +2,10 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int		i;
-	char	*cdst;
-	char	*csrc;
-	char	temp;
+	unsigned int		i;
+	char				*cdst;
+	char				*csrc;
+	char				temp;
 
 	cdst = dst;
 	csrc = src;
