@@ -1,5 +1,7 @@
 #include<stdlib.h>
 
+size_t	ft_strlen(const char *s);
+
 int	comparer(char *str, char *to_find, int to_find_len)
 {
 	int	i;
@@ -14,30 +16,20 @@ int	comparer(char *str, char *to_find, int to_find_len)
 	return (1);
 }
 
-int	length(char *str)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*strnstr(const char *haystack, const char *needle, size_t len)
-{
-	int	i;
-
-	i = 0;
-	if (length(to_find) == 0)
-		return (str);
-	while (i < length(str))
+	if (ft_strlen(needle) == 0)
+		return (haystack);
+	while (i < len - ft_strlen(needle))
 	{
-		if (str[i] == to_find[0])
+		if (haystack[i] == needle[0])
 		{
-			if (comparer(&str[i], to_find, length(to_find)) == 1)
-				return (&str[i]);
-			if (str[i] == '\0')
+			if (comparer(&haystack[i], needle, ft_strlen(needle)) == 1)
+				return (&haystack[i]);
+			if (haystack[i] == '\0')
 				break ;
 		}
 		i++;
