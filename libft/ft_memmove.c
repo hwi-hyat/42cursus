@@ -7,8 +7,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	char				*csrc;
 	char				temp;
 
-	cdst = dst;
-	csrc = src;
+	cdst = (char *)dst;
+	csrc = (char *)src;
 	i = 0;
 	while(i < len)
 	{
@@ -16,4 +16,5 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		cdst[i] = temp;
 		i++;
 	}
+	return (dst);
 }

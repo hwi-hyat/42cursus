@@ -7,11 +7,14 @@ char	*ft_strrchr(const char *s, int c)
 	unsigned int	size;
 
 	size = ft_strlen(s) - 1;
-	while (size >= 0)
+	while (1)
 	{
 		if (s[size] == c)
 			return (&s[size]);
+		else if (size == 0)
+			break ;
 		size--;
+		
 	}
 	return (0);
 }
