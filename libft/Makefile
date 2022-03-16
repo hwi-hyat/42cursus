@@ -1,18 +1,23 @@
-NAME = libft.a
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
 SRCS =	$(wildcard *.c) 
+OBJS	= ${SRCS:.c=.o}
+INCS	= includes
+NAME	= libft.a
+CC		= gcc
+CFLAGS	= -Wall -Wextra -Werror
 
-OBJECTS = $(SRCS:.c=.o)
+.c.o:
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I${INCS}
 
-all: $(NAME)
-$(NAME) : $(OBJECTS)
-	$(CC)	$(CFLAGS)	-o	$(NAME)	$(OBJECTS)
+${NAME}: ${OBJS}
+	ar rc ${NAME} ${OBJS}
+	ranlib ${NAME}
+
+all: ${NAME}
 
 clean:
-	rm	-f	$(OBJECTS)
+	rm -f ${OBJS}
 
 fclean: clean
-	rm	-f	$(NAME)
-	
+	rm -f ${NAME}
+
 re: fclean all

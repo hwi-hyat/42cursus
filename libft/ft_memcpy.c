@@ -3,15 +3,12 @@
 void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
 	unsigned long		i;
-	char				*cdst;
-	char				*csrc;
 
-	cdst = dst;
-	csrc = src;
 	i = 0;
-	while(i < n && cdst[i] && csrc[i])
+	while(i < n && ((char *)dst)[i] && ((char *)src)[i])
 	{
-		cdst[i] = csrc[i];
+		((char *)dst)[i] = ((char *)src)[i];
 		i++;
 	}
+	return (dst);
 }

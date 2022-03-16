@@ -10,7 +10,7 @@ char	*ft_strrchr(const char *s, int c)
 	while (1)
 	{
 		if (s[size] == c)
-			return (&s[size]);
+			return (&((char *)s)[size]);
 		else if (size == 0)
 			break ;
 		size--;

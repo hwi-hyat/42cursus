@@ -21,5 +21,5 @@ int ft_atoi(const char *nptr)
 		out += nptr[i] - '0';
 		i++;
 	}
-	return (out);
+	return (neg * out);
 }

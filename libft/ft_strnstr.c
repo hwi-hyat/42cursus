@@ -22,14 +22,14 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 
 	i = 0;
 	if (ft_strlen(needle) == 0)
-		return (haystack);
+		return ((char *)haystack);
 	while (i < len - ft_strlen(needle))
 	{
 		if (haystack[i] == needle[0])
 		{
-			if (comparer(&haystack[i], needle, ft_strlen(needle)) == 1)
-				return (&haystack[i]);
-			if (haystack[i] == '\0')
+			if (comparer(&((char *)haystack)[i], (char *)needle, ft_strlen(needle)) == 1)
+				return (&((char *)haystack)[i]);
+			if (((char *)haystack)[i] == '\0')
 				break ;
 		}
 		i++;
