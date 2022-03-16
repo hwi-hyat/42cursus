@@ -14,7 +14,6 @@ char	*ft_strrchr(const char *s, int c)
 		else if (size == 0)
 			break ;
 		size--;
-		
 	}
 	return (0);
 }

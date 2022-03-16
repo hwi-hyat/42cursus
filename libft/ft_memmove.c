@@ -10,7 +10,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	cdst = (char *)dst;
 	csrc = (char *)src;
 	i = 0;
-	while(i < len)
+	while (i < len)
 	{
 		temp = csrc[i];
 		cdst[i] = temp;
