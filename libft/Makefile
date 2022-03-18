@@ -1,9 +1,9 @@
-SRCS =	$(wildcard *.c) 
-OBJS	= ${SRCS:.c=.o}
-INCS	= includes
-NAME	= libft.a
-CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
+SRCS	=	$(wildcard *.c) 
+OBJS	=	${SRCS:.c=.o}
+INCS	=	includes
+NAME	=	libft.a
+CC		=	gcc
+CFLAGS	=	-Wall -Wextra -Werror
 
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I${INCS}
