@@ -4,11 +4,13 @@ size_t	ft_strlen(const char *s);
 
 size_t	ft_strlcpy(char * restrict dst, const char * restrict src, size_t dstsize)
 {
-	unsigned int	i;
+	size_t	i;
+	size_t	srclen;
 
 	i = 0;
+	srclen = ft_strlen(src);
 	if (dstsize == 0)
-		return (ft_strlen(src));
+		return (srclen);
 	while (i < dstsize - 1)
 	{
 		if (src[i] == 0)
@@ -17,5 +19,5 @@ size_t	ft_strlcpy(char * restrict dst, const char * restrict src, size_t dstsize
 		i++;
 	}
 	dst[i] = 0;
-	return (ft_strlen(src));
+	return (srclen);
 }

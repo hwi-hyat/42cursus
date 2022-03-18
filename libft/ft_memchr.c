@@ -13,5 +13,7 @@ char	*ft_memchr(const void *s, int c, size_t n)
 			return (&cs[i]);
 		i++;
 	}
+	if (c == 0)
+		return (&cs[i]);
 	return (0);
 }
