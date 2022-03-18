@@ -4,7 +4,7 @@ size_t	ft_strlen(const char *s);
 
 char	*ft_strrchr(const char *s, int c)
 {
-	unsigned int	size;
+	size_t	size;
 
 	size = ft_strlen(s) - 1;
 	while (1)
