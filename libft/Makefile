@@ -1,19 +1,22 @@
-SRCS	=	$(wildcard *.c) 
-OBJS	=	${SRCS:.c=.o}
-INCS	=	includes
-NAME	=	libft.a
-CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror
+SRCS		=	$(wildcard *.c) 
+BNS_SRCS	=	
+OBJS		=	${SRCS:.c=.o}
+BNS_OBJS	=	${BNS_SRCS:.c=.o}
+NAME		=	libft.a
+CC			=	gcc
+CFLAGS		=	-Wall -Wextra -Werror
 
 .c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I${INCS}
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}: ${OBJS}
-	ar rc ${NAME} ${OBJS}
-	ranlib ${NAME}
+	ar -rcs ${NAME} ${OBJS}
 
 all: ${NAME}
 
+bonus: ${OBJS} ${BNS_OBJS}
+	ar -rc ${NAME} ${OBJS}
+	ranlib ${NAME}
 clean:
 	rm -f ${OBJS}
 
