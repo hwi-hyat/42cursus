@@ -5,13 +5,13 @@ int counter(int n)
 	int	i;
 
 	i = 0;
+	if (n < 0)
+		i++;
 	while(n != 0)
 	{
 		n /= 10;
 		i++;
 	}
-	if (n < 0)
-		i++;
 	return (i);
 }
 
@@ -20,7 +20,10 @@ void num_disp(char *out, int n, int neg, int i)
 	if (i == 0 && neg == -1)
 		out[i] = '-';
 	if (i == counter(n))
+	{
+		out[i] = 0;
 		return;
+	}
 	n /= (10 * neg);
 	num_disp(out, n, neg, i + 1);
 	out[i] = (n % 10) * neg + '0';

@@ -29,6 +29,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	s2len;
 	char	*out;
 	
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
 	out = (char *)malloc(sizeof(char) * initializer(&s1len, &s2len, s1, s2));
 	if(out == NULL)
 		return (NULL);

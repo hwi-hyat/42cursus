@@ -18,11 +18,13 @@ int	comparer(char *str, char *to_find, int to_find_len)
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	unsigned int	i;
+	size_t	i;
 
 	i = 0;
 	if (ft_strlen(needle) == 0)
 		return ((char *)haystack);
+	if (ft_strlen(haystack) < ft_strlen(needle))
+		return (0);
 	while (i <= len - ft_strlen(needle))
 	{
 		if (haystack[i] == needle[0])

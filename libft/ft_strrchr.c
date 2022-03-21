@@ -6,14 +6,14 @@ char	*ft_strrchr(const char *s, int c)
 {
 	size_t	size;
 
-	size = ft_strlen(s) - 1;
-	while (1)
+	size = ft_strlen(s);
+	if (c == 0)
+		return (&((char *)s)[size]);
+	while (size)
 	{
+		size--;
 		if (s[size] == c)
 			return (&((char *)s)[size]);
-		else if (size == 0)
-			break ;
-		size--;
 	}
 	return (0);
 }
