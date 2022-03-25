@@ -2,27 +2,28 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned int		i;
+	size_t				i;
 	unsigned char		*cdst;
 	unsigned char		*csrc;
-	unsigned char		temp[len];
 
 	if (dst == 0 && src == 0)
 		return (0);
 	cdst = (unsigned char *)dst;
 	csrc = (unsigned char *)src;
 	i = 0;
-	while (i < len)
-	{
-		temp[i] = csrc[i];
-		i++;
-	}
-	i = 0;
-	while (i < len)
-	{
-		cdst[i] = temp[i];
-		i++;
-	}
+	len -= 1;
+	if (dst < src)
+		while (i <= len)
+		{
+			cdst[i] = csrc[i];
+			i++;
+		}
+	else if (src < dst)
+		while (len >= 0)
+		{
+			cdst[len] = csrc[len];
+			len--;
+		}
 	return (dst);
 }
 //오버랩 발생하면 따로 저장해주도록 돌아가게 고쳐야될거같음.

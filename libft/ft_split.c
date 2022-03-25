@@ -1,12 +1,5 @@
 #include<stdlib.h>
 
-int	sep(char a, char c)
-{
-	if (a == c)
-		return (1);
-	return (0);
-}
-
 int	word_counter(char const *s, char c)
 {
 	int	i;
@@ -18,9 +11,9 @@ int	word_counter(char const *s, char c)
 	cnt = 0;
 	while (s[i] != 0)
 	{
-		if (sep(s[i], c) == 0)
+		if (s[i] != c)
 			flag = 1;
-		if (flag && (sep(s[i + 1], c) == 1 || s[i + 1] == 0))
+		if (flag && (s[i + 1] == c || s[i + 1] == 0))
 		{
 			cnt++;
 			flag = 0;
@@ -35,7 +28,7 @@ int	len_cnt(char *str, char c)
 	int	i;
 
 	i = 0;
-	while (sep(str[i], c) == 0 && str[i] != 0)
+	while (str[i] != c && str[i] != 0)
 		i++;
 	return (i);
 }
@@ -45,11 +38,11 @@ void	filler05(char **out, char const *s, char c, int wi)
 	int	i;
 
 	i = 0;
-	while (sep(s[i], c) == 0 && s[i] != 0)
+	while (s[i] != c && s[i] != 0)
 		i++;
 	out[wi] = (char *)malloc(sizeof(char) * (i + 1));
 	i = 0;
-	while (sep(s[i], c) != 1 && s[i] != 0)
+	while (s[i] != c && s[i] != 0)
 	{
 		out[wi][i] = s[i];
 		i++;
@@ -70,7 +63,7 @@ char **ft_split(char const *s, char c)
 	out = (char **)malloc(sizeof(char *) * (words + 1));
 	while (s[i] != 0)
 	{
-		if (sep(s[i], c) == 0)
+		if (s[i] != c)
 		{
 			filler05(out, &s[i], c, wi);
 			wi++;

@@ -15,32 +15,43 @@ int counter(int n)
 	return (i);
 }
 
-void num_disp(char *out, int n, int neg, int i)
+int	neg(int n)
 {
-	if (i == 0 && neg == -1)
-		out[i] = '-';
-	if (i == counter(n))
+	if (n >= 0)
+		return (1);
+	else
+		return (-1);
+}
+
+void num_disp(char *out, int n, int len)
+{
+	out[len] = 0;
+	len--;
+	if (n < 0)
+		out[0] = '-';
+	while (n != 0)
 	{
-		out[i] = 0;
-		return;
+		out[len] = (n % 10) * neg(n) + '0';
+		len--;
+		n /= 10;
 	}
-	n /= (10 * neg);
-	num_disp(out, n, neg, i + 1);
-	out[i] = (n % 10) * neg + '0';
 }
 
 char *ft_itoa(int n)
 {
 	char	*out;
-	int		neg;
 
-	neg = 1;
-	if (n < 0)
-		neg = -1;
-	out = (char *)malloc(sizeof(char) * (counter(n) + 1));
-	if(out == NULL)
+	if (n == 0)
+	{
+		out = (char *)malloc(sizeof(char) * 2);
+		if (out == NULL)
+			return (NULL);
+		out = "0";
+		return (out);
+	}
+	out = (char *)malloc(sizeof(char) * (counter(n)) + 1);
+	if (out == NULL)
 		return (NULL);
-	num_disp(out, n, neg, 0);
-
+	num_disp(out, n, counter(n));
 	return (out);
-}	
+}

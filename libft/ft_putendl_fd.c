@@ -4,6 +4,8 @@ void ft_putendl_fd(char *s, int fd)
 {
 	int	length;
 
+	if (s == NULL)
+		return ;
 	length = 0;
 	while (1)
 	{

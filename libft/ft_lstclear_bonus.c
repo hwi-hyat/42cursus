@@ -10,7 +10,11 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	len -= 1;
 	while (len >= 0)
 	{
-		ft_lstdelone(lst[len], del);
+		del(lst[len]);
+		free(lst[len]->next);
+		//free(lst[len]);
 		len--;
 	}
+	free (lst);
+	lst = NULL;
 }
