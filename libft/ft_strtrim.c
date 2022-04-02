@@ -1,5 +1,7 @@
 #include<stdlib.h>
 
+size_t	ft_strlen(const char *s);
+
 int is_it_set(char const *set, char c)
 {
 	int	i;
@@ -14,44 +16,34 @@ int is_it_set(char const *set, char c)
 	return (0);
 }
 
-int len_check(char const *s1, char const *set)
-{
-	int	i;
-	int	len;
-
-	i = 0;
-	len = 0;
-	while (s1[i])
-	{
-		if (!is_it_set(set, s1[i]))
-			len++;
-		i++;
-	}
-	return (len);
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		i;
-	int		ii;
-	int		trimmedlen;
+	int		bi;
+	int		len;
 	char	*out;
 
+	if (s1 == NULL)
+		return (NULL);
 	i = 0;
-	ii = 0;
-	trimmedlen = len_check(s1, set);
-	out = (char *)malloc(sizeof(char) * (trimmedlen + 1));
+	while (is_it_set(set, s1[i]))
+		i++;
+	len = ft_strlen(&s1[i]);
+	if (i == len)
+		return (NULL);
+	bi = 0;
+	while (is_it_set(set, s1[len + i - bi - 1]))
+		bi++;
+	len -= bi;
+	out = (char *)malloc(sizeof(char) * (len + 1));
 	if (out == NULL)
 		return (NULL);
-	while (s1[i])
+	out[len] = 0;
+	bi = 0;
+	while (bi < len)
 	{
-		if (!is_it_set(set, s1[i]))
-		{	
-			out[ii] = s1[i];
-			ii++;
-		}
-		i++;
+		out[bi] = s1[i + bi];
+		bi++;
 	}
-	out[ii] = 0;
 	return (out);
 }
