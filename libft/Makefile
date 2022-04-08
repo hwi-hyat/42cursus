@@ -15,7 +15,7 @@ ${NAME}: ${OBJS}
 all: ${NAME}
 
 bonus: ${OBJS} ${BNS_OBJS}
-	ar -rc ${NAME} ${OBJS}
+	ar -rc ${NAME} ${OBJS} ${BNS_OBJS}
 	ranlib ${NAME}
 clean:
 	rm -f ${OBJS}

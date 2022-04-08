@@ -1,20 +1,14 @@
 #include"libft_bonus.h"
 
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
+
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	int	len;
-
-	len = ft_lstsize(lst[0]);
-	if (len == 0)
-		return;
-	len -= 1;
-	while (len >= 0)
+	if (lst == NULL)
+		return ;
+	while(*lst)
 	{
-		del(lst[len]);
-		free(lst[len]->next);
-		//free(lst[len]);
-		len--;
+		ft_lstdelone((*lst), del);
+		*lst = (*lst)->next;
 	}
-	free (lst);
-	lst = NULL;
 }
