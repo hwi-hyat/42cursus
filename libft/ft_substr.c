@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/20 01:33:01 by siykim            #+#    #+#             */
+/*   Updated: 2022/04/20 01:33:01 by siykim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include<stdlib.h>
 
 size_t	ft_strlen(const char *s);
@@ -16,7 +28,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (out == NULL)
 		return (NULL);
 	i = 0;
-	while(i < len && s[start])
+	while (i < len && s[start])
 	{
 		out[i] = s[start];
 		i++;

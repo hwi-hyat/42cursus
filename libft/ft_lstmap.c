@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/20 01:32:42 by siykim            #+#    #+#             */
-/*   Updated: 2022/04/20 01:32:42 by siykim           ###   ########.fr       */
+/*   Created: 2022/04/20 01:31:45 by siykim            #+#    #+#             */
+/*   Updated: 2022/04/20 01:31:45 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<stdlib.h>
+#include"libft.h"
 
-size_t	ft_strlen(const char *s);
-
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	unsigned int	i;
+	t_list	*out;
+	t_list	*out_tmp;
 
-	if (s == NULL)
-		return ;
-	i = 0;
-	while (s[i])
+	if (lst == NULL || f == NULL)
+		return (NULL);
+	out = NULL;
+	while (lst)
 	{
-		f(i, &s[i]);
-		i++;
+		out_tmp = ft_lstnew(f(lst->content));
+		if (out_tmp == NULL)
+		{
+			ft_lstclear(&out, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&out, out_tmp);
+		out_tmp = out_tmp->next;
+		lst = lst->next;
 	}
+	return (out);
 }

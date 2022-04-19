@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/20 01:30:22 by siykim            #+#    #+#             */
-/*   Updated: 2022/04/20 01:30:23 by siykim           ###   ########.fr       */
+/*   Created: 2022/04/20 01:31:27 by siykim            #+#    #+#             */
+/*   Updated: 2022/04/20 01:31:27 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalnum(int c)
+#include"libft.h"
+
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	if (('A' <= c && c <= 'Z')
-		|| ('a' <= c && c <= 'z')
-		|| ('0' <= c && c <= '9'))
-		return (1);
-	else
-		return (0);
+	int	len;
+
+	len = ft_lstsize(lst[0]);
+	if (len == 0)
+	{
+		lst[0] = new;
+		return ;
+	}
+	lst[len - 1]->next = new;
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/20 01:32:55 by siykim            #+#    #+#             */
+/*   Updated: 2022/04/20 01:32:55 by siykim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include<stdlib.h>
 
 size_t	ft_strlen(const char *s);
@@ -29,7 +41,8 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	{
 		if (haystack[i] == needle[0])
 		{
-			if (comparer(&((char *)haystack)[i], (char *)needle, ft_strlen(needle)) == 1)
+			if (comparer(&((char *)haystack)[i],
+				(char *)needle, ft_strlen(needle)) == 1)
 				return (&((char *)haystack)[i]);
 			if (((char *)haystack)[i] == '\0')
 				break ;

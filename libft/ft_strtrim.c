@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/20 01:32:59 by siykim            #+#    #+#             */
+/*   Updated: 2022/04/20 01:33:00 by siykim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include<stdlib.h>
 
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);
 
-int is_it_set(char const *set, char c)
+int	is_it_set(char const *set, char c)
 {
 	int	i;
 
 	i = 0;
-	while(set[i])
+	while (set[i])
 	{
 		if (set[i] == c)
 			return (1);

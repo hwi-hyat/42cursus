@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/20 01:31:59 by siykim            #+#    #+#             */
+/*   Updated: 2022/04/20 01:32:21 by siykim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include<stdlib.h>
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
@@ -14,15 +26,15 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	csrc = (unsigned char *)src;
 	i = 0;
 	if (dst < src)
+	{
 		while (i < len)
 		{
 			cdst[i] = csrc[i];
 			i++;
 		}
+	}
 	else
 		while (len--)
 			cdst[len] = csrc[len];
 	return (dst);
 }
-//오버랩 발생하면 따로 저장해주도록 돌아가게 고쳐야될거같음.
-//두 메모리 주소 차 랑 len이랑 비교해서 오버랩 판단할수있을듯

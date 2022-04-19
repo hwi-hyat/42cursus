@@ -1,76 +1,80 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/20 01:18:27 by siykim            #+#    #+#             */
+/*   Updated: 2022/04/20 01:37:26 by siykim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include<stdio.h>
 #include<stdlib.h>
 
-int	word_counter(char const *s, char c)
+int	sep_strlen(char const *str, char c)
+{
+	int	len;
+
+	len = 0;
+	while (str[len] != c)
+		len++;
+	return (len);
+}
+
+int	word_count(char const *str, char c)
+{
+	int	words_cnt;
+
+	words_cnt = 0;
+	if (*str != c)
+		words_cnt++;
+	str++;
+	while (*str != 0)
+	{
+		if (*(str - 1) == c && *str != c)
+			words_cnt++;
+		str++;
+	}
+	return (words_cnt);
+}
+
+void	placing_char(char **ans, char const *str, int words, char c)
 {
 	int	i;
-	int	flag;
-	int	cnt;
+	int	j;
+	int	word_len;
 
 	i = 0;
-	flag = 0;
-	cnt = 0;
-	while (s[i] != 0)
+	while (i < words)
 	{
-		if (s[i] != c)
-			flag = 1;
-		if (flag && (s[i + 1] == c || s[i + 1] == 0))
+		while (*str == c)
+			str++;
+		word_len = sep_strlen(str, c);
+		ans[i] = (char *)malloc(sizeof(char) * word_len + 1);
+		j = 0;
+		while (*str != c)
 		{
-			cnt++;
-			flag = 0;
+			ans[i][j] = *str;
+			str++;
+			j++;
 		}
+		ans[i][j] = 0;
 		i++;
 	}
-	return (cnt);
+	ans[i] = 0;
 }
 
-int	len_cnt(char *str, char c)
+char	**ft_split(char const *s, char c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != c && str[i] != 0)
-		i++;
-	return (i);
-}
-
-void	filler05(char **out, char const *s, char c, int wi)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != c && s[i] != 0)
-		i++;
-	out[wi] = (char *)malloc(sizeof(char) * (i + 1));
-	i = 0;
-	while (s[i] != c && s[i] != 0)
-	{
-		out[wi][i] = s[i];
-		i++;
-	}
-	out[wi][i] = 0;
-}
-
-char **ft_split(char const *s, char c)
-{
-	int		i;
 	int		words;
-	int		wi;
-	char	**out;
+	char	**ans;
 
-	i = 0;
-	wi = 0;
-	words = word_counter(s, c);
-	out = (char **)malloc(sizeof(char *) * (words + 1));
-	while (s[i] != 0)
-	{
-		if (s[i] != c)
-		{
-			filler05(out, &s[i], c, wi);
-			wi++;
-			i += len_cnt(&((char *)s)[i], c);
-		}
-		i++;
-	}
-	out[wi] = NULL;
-	return (out);
+	words = word_count(s, c);
+	ans = (char **)malloc(sizeof(char *) * words + 1);
+	if (ans == NULL)
+		return (NULL);
+	placing_char(ans, s, words, c);
+	return (ans);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/20 01:30:20 by siykim            #+#    #+#             */
+/*   Updated: 2022/04/20 01:30:20 by siykim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include<stdlib.h>
 
 void	*ft_calloc(size_t nmemb, size_t size)
@@ -6,8 +18,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	size_t	i;
 
 	out = (char *)malloc(size * nmemb);
-	//이렇게 해도 될까? 1바이트씩 초기화 해줄려고 캐릭터포인터로 받았는데
-	//size가 0일때도 생각을 해줘야겠는데??
 	if (out == NULL)
 		return (NULL);
 	i = 0;

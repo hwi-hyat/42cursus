@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/20 01:31:24 by siykim            #+#    #+#             */
+/*   Updated: 2022/04/20 01:31:24 by siykim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include<stdlib.h>
 
-int counter(int n)
+int	counter(int n)
 {
 	int	i;
 
 	i = 0;
 	if (n < 0)
 		i++;
-	while(n != 0)
+	while (n != 0)
 	{
 		n /= 10;
 		i++;
@@ -23,7 +35,7 @@ int	neg(int n)
 		return (-1);
 }
 
-void num_disp(char *out, int n, int len)
+void	num_disp(char *out, int n, int len)
 {
 	out[len] = 0;
 	len--;
@@ -37,7 +49,7 @@ void num_disp(char *out, int n, int len)
 	}
 }
 
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*out;
 
