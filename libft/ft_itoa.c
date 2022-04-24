@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 01:31:24 by siykim            #+#    #+#             */
-/*   Updated: 2022/04/20 01:31:24 by siykim           ###   ########.fr       */
+/*   Updated: 2022/04/22 23:04:12 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ char	*ft_itoa(int n)
 		out = (char *)malloc(sizeof(char) * 2);
 		if (out == NULL)
 			return (NULL);
-		out = "0";
+		out[0] = '0';
+		out[1] = '\0';
 		return (out);
 	}
 	out = (char *)malloc(sizeof(char) * (counter(n)) + 1);

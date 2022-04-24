@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 01:31:27 by siykim            #+#    #+#             */
-/*   Updated: 2022/04/20 01:31:27 by siykim           ###   ########.fr       */
+/*   Updated: 2022/04/23 00:28:13 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int	len;
+	t_list	*tmp;
 
-	len = ft_lstsize(lst[0]);
-	if (len == 0)
-	{
-		lst[0] = new;
+	if (lst == NULL || new == NULL)
 		return ;
+	if (*lst == NULL)
+		*lst = new;
+	else
+	{
+		tmp = ft_lstlast(*lst);
+		tmp->next = new;
 	}
-	lst[len - 1]->next = new;
 }
