@@ -6,28 +6,26 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 01:31:50 by siykim            #+#    #+#             */
-/*   Updated: 2022/04/24 16:22:25 by siykim           ###   ########.fr       */
+/*   Updated: 2022/04/25 17:06:54 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<stdlib.h>
 
-char	*ft_memchr(const void *s, int c, size_t n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	i;
-	char	*cs;
+	size_t			i;
+	unsigned char	*cs;
 
-	if (n == 0)
-		return (NULL);
+	cs = (unsigned char *)s;
 	i = 0;
-	cs = (char *)s;
-	while (cs[i] && i < n)
+	while (i < n)
 	{
-		if (cs[i] == (char)c)
-			return (&cs[i]);
+		if (cs[i] == (unsigned char)c)
+			return ((void *)&cs[i]);
+		if (n == 0)
+			break ;
 		i++;
 	}
-	if (c == 0)
-		return (&cs[i]);
-	return (0);
+	return (NULL);
 }

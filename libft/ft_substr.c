@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 01:33:01 by siykim            #+#    #+#             */
-/*   Updated: 2022/04/20 01:33:01 by siykim           ###   ########.fr       */
+/*   Updated: 2022/04/25 16:44:32 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	if (start >= ft_strlen(s))
 		return (ft_strdup(""));
-	out = (char *)malloc(sizeof(char) * (len + 1));
+	out = (char *)malloc(sizeof(char) * (ft_strlen(&s[start]) + 1));
 	if (out == NULL)
 		return (NULL);
 	i = 0;
