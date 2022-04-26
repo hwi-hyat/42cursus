@@ -6,7 +6,7 @@
 #    By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/20 01:34:26 by siykim            #+#    #+#              #
-#    Updated: 2022/04/20 01:34:27 by siykim           ###   ########.fr        #
+#    Updated: 2022/04/26 22:13:14 by siykim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,26 +59,29 @@ OBJS		=	${SRCS:.c=.o}
 
 BNS_OBJS	=	${BNS_SRCS:.c=.o}
 
-ALL_OBJS	=	${OBJS} ${BNS_OBJS}
-
 NAME		=	libft.a
 
 CC			=	gcc
 
 CFLAGS		=	-Wall -Wextra -Werror
 
+ifdef IS_BNS
+	ALL_OBJS = ${OBJS} ${BNS_OBJS}
+else
+	ALL_OBJS = ${OBJS}
+endif
+
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-${NAME}: ${OBJS}
-	ar -rc ${NAME} ${OBJS}
+${NAME}: ${ALL_OBJS}
+	ar -rc ${NAME} ${ALL_OBJS}
 	ranlib ${NAME}
 
 all: ${NAME}
 
-bonus: ${ALL_OBJS}
-	ar -rc ${NAME} ${ALL_OBJS}
-	ranlib ${NAME}
+bonus:
+	make IS_BNS=1 all
 
 clean:
 	rm -f ${OBJS} ${BNS_OBJS}
@@ -88,4 +91,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
