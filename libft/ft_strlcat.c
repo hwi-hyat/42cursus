@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 01:32:45 by siykim            #+#    #+#             */
-/*   Updated: 2022/04/20 01:32:46 by siykim           ###   ########.fr       */
+/*   Updated: 2022/04/28 11:33:13 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ size_t	ft_strlen(const char *s);
 
 size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize)
 {
-	unsigned int	i;
-	unsigned int	j;
+	size_t			i;
+	size_t			j;
 	unsigned int	out;
 
 	i = ft_strlen(dst);

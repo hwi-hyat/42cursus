@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 01:31:52 by siykim            #+#    #+#             */
-/*   Updated: 2022/04/20 01:31:52 by siykim           ###   ########.fr       */
+/*   Updated: 2022/04/28 11:31:05 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned int	i;
+	size_t			i;
 	unsigned char	*cs1;
 	unsigned char	*cs2;
 
