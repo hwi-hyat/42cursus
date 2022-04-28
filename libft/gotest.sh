@@ -23,7 +23,7 @@ git clone https://github.com/alelievr/libft-unit-test.it
 cd libft-unit-test/
 sed -i "" 's/LIBFTDIR	=	..\/libft/LIBFTDIR	=	..\/' Makefile
 make f
-#cd ..
+cd ..
 echo -e "\033[32;1m"libftTester"\033[m"
 read $a
 git clone https://github.com/Tripouille/libftTester.git
