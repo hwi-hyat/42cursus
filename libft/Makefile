@@ -71,9 +71,6 @@ else
 	ALL_OBJS = ${OBJS}
 endif
 
-.c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
-
 ${NAME}: ${ALL_OBJS}
 	ar -rc ${NAME} ${ALL_OBJS}
 	ranlib ${NAME}
