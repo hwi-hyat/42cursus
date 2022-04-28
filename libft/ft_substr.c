@@ -24,7 +24,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	if (start >= ft_strlen(s))
 		return (ft_strdup(""));
-	out = (char *)malloc(sizeof(char) * (ft_strlen(&s[start]) + 1));
+	if (ft_strlen(&s[start]) > len)
+		i = len;
+	else
+		i = ft_strlen(&s[start]);
+	out = (char *)malloc(sizeof(char) * (i + 1));
 	if (out == NULL)
 		return (NULL);
 	i = 0;
