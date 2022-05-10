@@ -6,17 +6,17 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 22:13:58 by siykim            #+#    #+#             */
-/*   Updated: 2022/05/03 01:23:20 by siykim           ###   ########.fr       */
+/*   Updated: 2022/05/11 00:04:14 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../ft_printf.h"
 
-int	type_c(va_list ap)
+int	type_c(va_list *ap)
 {
-	char out;
+	char	out;
 
-	out = (char)va_arg(ap, int);
+	out = va_arg(*ap, int);
 	write(1, &out, 1);
 	return (1);
 }

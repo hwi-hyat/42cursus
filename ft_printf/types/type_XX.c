@@ -1,35 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   type_s.c                                           :+:      :+:    :+:   */
+/*   type_XX.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 22:13:58 by siykim            #+#    #+#             */
-/*   Updated: 2022/05/11 00:42:50 by siykim           ###   ########.fr       */
+/*   Updated: 2022/05/11 00:27:03 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../ft_printf.h"
 
-int ft_strlen(char *str)
+void put_nbr_X(unsigned int n, int *len)
 {
-	int	len;
+	char	*hex;
+
+	hex = "0123456789ABCDEF";
+	if (n == 0)
+		return ;
+	else
+	{
+		put_nbr_X(n / 16, len);
+		write(1, &hex[(n % 16)], 1);
+		(*len)++;
+	}
+	return ;
+}
+
+int	type_X(va_list *ap)
+{
+	int				len;
+	unsigned int	out;
 
 	len = 0;
-	while (str[len])
-		len++;
+	out = va_arg(*ap, unsigned int);
+	if (out == 0)
+	{
+		write(1, "0", 1);
+		return (1);
+	}
+	put_nbr_X(out, &len);
 	return (len);
 }
-/*
-int	type_s(va_list *ap)
-{
-	char *out;
-	int	len;
-
-	out = va_args(*ap, );
-	len = ft_strlen(*ap);
-	write(1, *ap, len);
-	return (len);
-}
-*/

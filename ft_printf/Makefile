@@ -6,45 +6,39 @@
 #    By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/20 01:34:26 by siykim            #+#    #+#              #
-#    Updated: 2022/05/02 20:33:33 by siykim           ###   ########.fr        #
+#    Updated: 2022/05/05 13:03:56 by siykim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	
-
-BNS_SRCS	=	
+SRCS		=	ft_printf.c	\
+				types/type_c.c	\
+				types/type_di.c	\
+				types/type_p.c	\
+				types/type_s.c	\
+				types/type_u.c	\
+				types/type_x.c	\
+				types/type_XX.c	\
 
 OBJS		=	${SRCS:.c=.o}
 
-BNS_OBJS	=	${BNS_SRCS:.c=.o}
-
 NAME		=	libftprintf.a
 
-CC			=	gcc
+CC			=	cc
 
 CFLAGS		=	-Wall -Wextra -Werror
 
-ifdef IS_BNS
-	ALL_OBJS = ${OBJS} ${BNS_OBJS}
-else
-	ALL_OBJS = ${OBJS}
-endif
-
-${NAME}: ${ALL_OBJS}
-	ar -rc ${NAME} ${ALL_OBJS}
+${NAME}: ${OBJS}
+	ar -rc ${NAME} ${OBJS}
 	ranlib ${NAME}
 
 all: ${NAME}
 
-bonus:
-	make IS_BNS=1 all
-
 clean:
-	rm -f ${OBJS} ${BNS_OBJS}
+	rm -f ${OBJS}
 
 fclean: clean
 	rm -f ${NAME}
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re

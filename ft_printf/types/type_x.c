@@ -6,42 +6,40 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 22:13:58 by siykim            #+#    #+#             */
-/*   Updated: 2022/05/03 15:19:08 by siykim           ###   ########.fr       */
+/*   Updated: 2022/05/11 00:27:11 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../ft_printf.h"
 
-void	hexadecimal_out(void *addr, int *len)
+void put_nbr_x(unsigned int n, int *len)
 {
-	unsigned long long	i_addr;
-	char				out[17];
-	char				*hex;
-	int					i;
+	char	*hex;
 
-	out[16] = 0;
-	i = 15;
 	hex = "0123456789abcdef";
-	i_addr = (unsigned long long)addr;
-	while (i_addr != 0)
+	if (n == 0)
+		return ;
+	else
 	{
-		out[i] = hex[i_addr % 16];
-		i_addr /= 16;
-		i--;
+		put_nbr_x(n / 16, len);
+		write(1, &hex[(n % 16)], 1);
 		(*len)++;
 	}
-	write(1, "0x", 2);
-	write(1, &out[i], *len + 1);	//왜 len + 1 이지????? 내가 해놓고도 모르겠네
-	(*len) += 2;
+	return ;
 }
 
-int	type_x(va_list ap)
+int	type_x(va_list *ap)
 {
-	int		len;
-	void	*out;
+	int				len;
+	unsigned int	out;
 
 	len = 0;
-	out = va_arg(ap, void *);
-	hexadecimal_out(out, &len);
+	out = va_arg(*ap, unsigned int);
+	if (out == 0)
+	{
+		write(1, "0", 1);
+		return (1);
+	}
+	put_nbr_x(out, &len);
 	return (len);
 }

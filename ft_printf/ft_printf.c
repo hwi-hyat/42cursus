@@ -6,13 +6,13 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 22:14:00 by siykim            #+#    #+#             */
-/*   Updated: 2022/05/03 01:33:37 by siykim           ###   ########.fr       */
+/*   Updated: 2022/05/11 00:36:21 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf.h"
 
-int check(const char c, va_list ap)
+int check(const char c, va_list *ap)
 {
 	if (c == 'c')
 		return (type_c(ap));
@@ -24,12 +24,17 @@ int check(const char c, va_list ap)
 		return (type_di(ap));
 	else if (c == 'u')
 		return (type_u(ap));
-	/*else if (c == 'x')
+	else if (c == 'x')
 		return (type_x(ap));
 	else if (c == 'X')
 		return (type_X(ap));
 	else if (c == '%')
-		return (type_percent());*/
+	{
+		write(1, "%", 1);
+		return (1);
+	}
+	else
+		return (-1);
 	return (0);
 }
 
@@ -44,7 +49,7 @@ int	ft_printf(const char *str, ...)
 	{
 		if (*str == '%')
 		{
-			cnt += check(*(str + 1), ap);
+			cnt += check(*(str + 1), &ap);
 			str += 2;
 		}
 		else
@@ -56,28 +61,41 @@ int	ft_printf(const char *str, ...)
 	}
 	return (cnt);
 }
-
-#include<stdio.h>
+/*
 int main()
 {
 	char c = 'c';
 	int ret;
-	ret = ft_printf("char %c\n", c);
+	ret = ft_printf("ft_printf c %c %c %c\n", '0', 0, '0');
+	printf("   printf c %c %c %c\n", '0', 0, '0');
 	printf("%d\n\n\n", ret);
 
 
-
-
-	ret = ft_printf("ft_printf %p\n", &c);
-	printf("   printf %p\n", &c);
+	printf("ft_printf p\n");
+	ret = ft_printf("%p\n", (void *)15);
+	printf("   printf\n%p\n", (void *)15);
 	printf("%d\n\n\n", ret);
 
 
-	int n = -123;
-	ret = ft_printf("ft_printf %d\n", n);
-	printf("   printf %d\n", n);
+	int n = 9;
+	ret = ft_printf("ft_printf d %d %d\n", n, 0);
+	printf("   printf d %d %d\n", n, 0);
 	printf("%d\n\n\n", ret);
 
+
+	ret = ft_printf("ft_printf x %x\n", n);
+	printf("   printf x %x\n", n);
+	printf("%d\n\n\n", ret);
+
+
+	ret = ft_printf("ft_printf X %X\n", n);
+	printf("   printf X %X\n", n);
+	printf("%d\n\n\n", ret);
+
+
+	ret = ft_printf("ft_printf per %%\n");
+	printf("   printf per %%\n");
+	printf("%d\n\n\n", ret);
 
 	return 0;
-}
+}*/

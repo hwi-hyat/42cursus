@@ -6,13 +6,13 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 22:13:58 by siykim            #+#    #+#             */
-/*   Updated: 2022/05/03 01:23:13 by siykim           ###   ########.fr       */
+/*   Updated: 2022/05/11 00:26:30 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../ft_printf.h"
 
-void put_nbr(int n, int *len)
+void put_nbr_di(int n, int *len)
 {
 	char out;
 
@@ -26,27 +26,32 @@ void put_nbr(int n, int *len)
 			(*len)++;
 		}
 		out = -(n % 10) + '0';
-		put_nbr(n / 10, len);
+		put_nbr_di(n / 10, len);
 		write(1, &out, 1);
 		(*len)++;
 	}
 	else
 	{
 		out = (n % 10) + '0';
-		put_nbr(n / 10, len);
+		put_nbr_di(n / 10, len);
 		write(1, &out, 1);
 		(*len)++;
 	}
 	return ;
 }
 
-int	type_di(va_list ap)
+int	type_di(va_list *ap)
 {
 	int	out;
 	int	len;
 
 	len = 0;
-	out = va_arg(ap, int);
-	put_nbr(out, &len);
+	out = va_arg(*ap, int);
+	if (out == 0)
+	{
+		write(1, "0", 1);
+		return (1);
+	}
+	put_nbr_di(out, &len);
 	return (len);
 }
