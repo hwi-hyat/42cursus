@@ -6,15 +6,15 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 22:13:58 by siykim            #+#    #+#             */
-/*   Updated: 2022/05/11 00:26:30 by siykim           ###   ########.fr       */
+/*   Updated: 2022/05/11 13:54:45 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../ft_printf.h"
 
-void put_nbr_di(int n, int *len)
+void	put_nbr_di(int n, int *len)
 {
-	char out;
+	char	out;
 
 	if (n == 0)
 		return ;
