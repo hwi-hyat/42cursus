@@ -17,7 +17,7 @@ SRCS		=	ft_printf.c	\
 				types/type_s.c	\
 				types/type_u.c	\
 				types/type_x.c	\
-				types/type_XX.c	\
+				types/type_XX.c
 
 OBJS		=	${SRCS:.c=.o}
 
@@ -39,6 +39,8 @@ clean:
 fclean: clean
 	rm -f ${NAME}
 
-re: fclean all
+re: 
+	make fclean
+	make all
 
 .PHONY: all clean fclean re
