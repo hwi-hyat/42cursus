@@ -33,8 +33,6 @@ int	check(const char c, va_list *ap)
 		write(1, "%", 1);
 		return (1);
 	}
-	else
-		return (-1);
 	return (0);
 }
 
@@ -67,7 +65,7 @@ int main()
 {
 	int ret;
 	
-	ret = ft_printf("ft_printf c %c %c %c\n", '-', 0, '0');
+	ret = ft_printf("ft_printf c % %c %c\n", '-', 0, '0');
 	printf("   printf c %c %c %c\n", '-', 0, '0');
 	printf("%d\n\n\n", ret);
 
@@ -106,4 +104,5 @@ int main()
 
 	return 0;
 }
+
 */

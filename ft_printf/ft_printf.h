@@ -16,6 +16,7 @@
 # include<unistd.h>
 # include<stdio.h>
 # include<stdarg.h>
+# include<stdint.h>
 
 int				type_c(va_list *ap);
 int				type_s(va_list *ap);

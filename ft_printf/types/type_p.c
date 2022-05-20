@@ -12,7 +12,7 @@
 
 #include"../ft_printf.h"
 
-void	put_nbr_p(unsigned long long n, int *len)
+void	put_nbr_p(uintptr_t n, int *len)
 {
 	char	*hex;
 
@@ -34,11 +34,11 @@ void	put_nbr_p(unsigned long long n, int *len)
 
 int	type_p(va_list *ap)
 {
-	int					len;
-	unsigned long long	out;
+	int			len;
+	uintptr_t	out;
 
 	len = 0;
-	out = (unsigned long long)va_arg(*ap, void *);
+	out = (uintptr_t)va_arg(*ap, void *);
 	if (out == 0)
 	{
 		write(1, "0x0", 3);
