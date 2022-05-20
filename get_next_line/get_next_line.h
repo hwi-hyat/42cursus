@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 20:35:36 by siykim            #+#    #+#             */
-/*   Updated: 2022/05/11 14:27:50 by siykim           ###   ########.fr       */
+/*   Created: 2022/05/14 00:52:05 by siykim            #+#    #+#             */
+/*   Updated: 2022/05/17 14:24:35 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # include<unistd.h>
-# include<stdio.h>
-# include<stdarg.h>
+# include<stdlib.h>
 
-int				type_c(va_list *ap);
-int				type_s(va_list *ap);
-int				type_p(va_list *ap);
-int				type_di(va_list *ap);
-int				type_x(va_list *ap);
-int				type_largex(va_list *ap);
-int				ft_printf(const char *str, ...);
-unsigned int	type_u(va_list *ap);
+typedef struct	s_blist
+{
+	char	*content;
+	t_blist	next;
+}				t_blist;
+
+
+char	*get_next_line(int fd);
+
 
 #endif

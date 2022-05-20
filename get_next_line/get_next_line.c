@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 20:35:36 by siykim            #+#    #+#             */
-/*   Updated: 2022/05/11 14:27:50 by siykim           ###   ########.fr       */
+/*   Created: 2022/05/14 00:51:52 by siykim            #+#    #+#             */
+/*   Updated: 2022/05/17 14:24:49 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "get_next_line.h"
 
-# include<unistd.h>
-# include<stdio.h>
-# include<stdarg.h>
+char	*get_next_line(int fd)
+{
 
-int				type_c(va_list *ap);
-int				type_s(va_list *ap);
-int				type_p(va_list *ap);
-int				type_di(va_list *ap);
-int				type_x(va_list *ap);
-int				type_largex(va_list *ap);
-int				ft_printf(const char *str, ...);
-unsigned int	type_u(va_list *ap);
-
-#endif
+	
+}
