@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 00:52:05 by siykim            #+#    #+#             */
-/*   Updated: 2022/05/17 14:24:35 by siykim           ###   ########.fr       */
+/*   Updated: 2022/05/25 14:42:45 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,16 @@
 
 # include<unistd.h>
 # include<stdlib.h>
+# include<stdio.h> // 나중에 지워주자
+# include<fcntl.h> // 나중에 지워주자
 
-typedef struct	s_blist
-{
-	char	*content;
-	t_blist	next;
-}				t_blist;
+
+# define BUFFER_SIZE 10 //나중에 지워줘야함
 
 
 char	*get_next_line(int fd);
+int		str_len(char *str);
+void	str_dup(char *des, char *src);
 
 
 #endif
