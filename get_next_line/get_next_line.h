@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 00:52:05 by siykim            #+#    #+#             */
-/*   Updated: 2022/05/25 14:42:45 by siykim           ###   ########.fr       */
+/*   Updated: 2022/05/30 01:07:28 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 # include<fcntl.h> // 나중에 지워주자
 
 
-# define BUFFER_SIZE 10 //나중에 지워줘야함
+//# define BUFFER_SIZE 10 //나중에 지워줘야함
 
 
 char	*get_next_line(int fd);
 int		str_len(char *str);
-void	str_dup(char *des, char *src);
+void	str_cpy(char *des, char *src, int len);
 
 
 #endif
