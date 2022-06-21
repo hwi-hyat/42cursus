@@ -18,8 +18,24 @@
 # include<stdio.h> // 나중에 지워주자
 # include<fcntl.h> // 나중에 지워주자
 
+# define BUFFER_SIZE 10 //나중에 지워줘야함
 
-//# define BUFFER_SIZE 10 //나중에 지워줘야함
+typedef struct s_files
+{
+	int		fd;
+	char	*line;
+	t_files	*next;
+}t_files;
+
+typedef struct s_strings
+{
+	char	*tmp;
+	char	*files_str;
+	char	*ret_str;
+}s_strings;
+
+
+
 
 
 char	*get_next_line(int fd);
