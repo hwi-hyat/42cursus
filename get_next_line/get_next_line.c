@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 00:51:52 by siykim            #+#    #+#             */
-/*   Updated: 2022/05/30 01:11:13 by siykim           ###   ########.fr       */
+/*   Updated: 2022/06/04 13:23:45 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int nl_check(char *str)
 
 char	*get_next_line(int fd)
 {
-	int		tmp;
-	int		len;
-	char	buf[BUFFER_SIZE];
-	char	*out;
+	int			tmp;
+	int			len;
+	char		*out;
+	static char	buf[BUFFER_SIZE];
 
 	out = 0;
 	while (1)
