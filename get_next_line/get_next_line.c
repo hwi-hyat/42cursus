@@ -17,12 +17,13 @@ int	check_line(t_strings *strings, int read_i)
 	int		i;
 	int		len;
 	char	*tmp;
-
+	
+	//printf("\nread_i is %d\n", read_i);
 	if (strings->files_line == NULL)
 	{
 		if (read_i == 0)
 		{
-			printf("??\n");
+			//printf("??\n");
 			strings->ret_str = NULL;
 			return (1);
 		}
@@ -31,7 +32,7 @@ int	check_line(t_strings *strings, int read_i)
 	i = 0;
 	tmp = NULL;
 	len = str_len(strings->files_line);
-	////printf("nl?\n");
+	////////printf("nl?\n");
 	while (strings->files_line[i])
 	{
 		if (strings->files_line[i] == '\n' || read_i == 0)
@@ -43,7 +44,7 @@ int	check_line(t_strings *strings, int read_i)
 			if (strings->files_line != NULL)
 				free(strings->files_line);
 			strings->files_line = tmp;
-			printf("files_line is %s\npointer %p\n\n", strings->files_line, strings->files_line);
+			//printf("files_line is %s\npointer %p\n\n", strings->files_line, strings->files_line);
 			return (1);
 		}
 		i++;
@@ -60,7 +61,7 @@ void	search_fd(int fd, t_files *files, t_strings *strings)
 	{
 		if(files_i->fd == fd)
 		{
-			printf("files_i->line is %s\n", files_i->line);
+			////printf("files_i->line is %s\n", files_i->line);
 			strings->files_line = files_i->line;
 			return ;
 		}
@@ -76,7 +77,7 @@ void	search_fd(int fd, t_files *files, t_strings *strings)
 	files_i->fd = fd;
 }
 
-void	fd_line_saver(t_files *files, t_strings *strings, int fd)
+void	fd_line_saver(t_files *files, t_strings *strings, int fd, int read_i)
 {
 	t_files	*files_i;
 	int		len;
@@ -89,8 +90,11 @@ void	fd_line_saver(t_files *files, t_strings *strings, int fd)
 			len = str_len(strings->files_line);
 			files_i->line = str_dup_nt2(strings->files_line, len);
 		}
+		//printf("||\nfiles_line is %s\nfiles_i->line is %s\n||\n", strings->files_line, files_i->line);
 		files_i = files_i->next;
 	}
+	if (read_i == 0)
+		nl_adder(strings->ret_str);
 }
 
 char	*get_next_line(int fd)
@@ -106,30 +110,32 @@ char	*get_next_line(int fd)
  	search_fd(fd, &files, &strings);
 	if (fd < 3)
 		return (NULL);
-	////printf("%p\n", &files);
+	////////printf("%p\n", &files);
 	while (1)
 	{
-		////printf("cycling\n");
+		////////printf("cycling\n");
 		if (check_line(&strings, read_i) == 1 || read_i == 0)
 		{
-			printf("here?\n");
-			fd_line_saver(&files, &strings, fd);
+			////printf("here?\n");
+			fd_line_saver(&files, &strings, fd, read_i);
 			free(strings.tmp);
 			return (strings.ret_str);//리턴하기전에 할당해제 해줘야됨
 		}
 		read_i = read(fd, strings.tmp, BUFFER_SIZE);
 		if (read_i < 0)
 			break;
+		//printf("####files_line is %s, strings_tmp is %s\n", strings.files_line, strings.tmp);
 		strings.files_line = str_merger(strings.files_line, strings.tmp);
+		//printf("####files_line is %s, strings_tmp is %s\n", strings.files_line, strings.tmp);
 		i = 0;
 		while (i < BUFFER_SIZE)
 			strings.tmp[i++] = 0;
-		printf("files_line is %s\n", strings.files_line);
+		////printf("files_line is %s\n", strings.files_line);
 	}
 	free(strings.tmp);
 	return (NULL);
 }
-
+/*
 int main()
 {
 	int fd;
@@ -141,9 +147,10 @@ int main()
 	{
 		//scanf("%c", &in);
 		out = get_next_line(fd);
-		printf("pointer is %p\n", out);
+		//printf("pointer is %p\n", out);
 		printf("result is %s\n", out);
 	}
 	close(fd);
 	return 0;
 }
+*/
