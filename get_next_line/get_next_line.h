@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 00:52:05 by siykim            #+#    #+#             */
-/*   Updated: 2022/05/30 01:07:28 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/12 01:38:52 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@
 
 typedef struct s_files
 {
-	int		fd;
-	char	*line;
-	t_files	*next;
-}t_files;
+	int				fd;
+	char			*line;
+	struct s_files	*next;
+} t_files;
 
 typedef struct s_strings
 {
 	char	*tmp;
-	char	*files_str;
+	char	*files_line;
 	char	*ret_str;
-}s_strings;
+} t_strings;
 
 
 
@@ -41,6 +41,9 @@ typedef struct s_strings
 char	*get_next_line(int fd);
 int		str_len(char *str);
 void	str_cpy(char *des, char *src, int len);
+void	str_dup_nt(char *des, char *src, int len);
+char	*str_dup_nt2(char *src, int len);
+char	*str_merger(char *des, char *src);
 
 
 #endif
