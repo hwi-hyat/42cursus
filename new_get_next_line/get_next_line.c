@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 21:16:30 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/14 18:18:27 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/14 18:40:33 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,6 @@ char	*get_next_line(int fd)
 			strs.line = nl_attatcher(strs.line);
 			continue ;
 		}
-		
+		strs.line = merge_str(strs.line, strs.buf);
 	}
 }
