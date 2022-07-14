@@ -18,7 +18,7 @@
 # include<stdio.h> // 나중에 지워주자
 # include<fcntl.h> // 나중에 지워주자
 
-//# define BUFFER_SIZE 42 //나중에 지워줘야함
+# define BUFFER_SIZE 10000000 //나중에 지워줘야함
 
 typedef struct s_files
 {

@@ -35,7 +35,7 @@ void	str_cpy(char *des, char *src, int len)
 		i++;
 	}
 }
-
+/*
 char *nl_adder(char *str)
 {
 	int		len;
@@ -46,17 +46,17 @@ char *nl_adder(char *str)
 	len = str_len(str);
 	tmp = (char *)malloc(sizeof(char) * (len + 2));
 	str_cpy(tmp, str, len);
-	tmp[len] = '\n';
+	//tmp[len] = '\n';
 	tmp[len + 1] = 0;
 	free(str);
 	return (tmp);
 }
-
+*/
 char	*str_dup_nt2(char *src, int len)
 {
 	char *des;
 
-	if (len <= 1)
+	if (len <= 0)
 		return (NULL);
 	des = (char *)malloc(sizeof(char) * (len + 1));
 	str_cpy(des, src, len);
