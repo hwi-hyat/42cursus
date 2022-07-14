@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 01:45:42 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/12 01:56:57 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/13 18:24:39 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char *nl_adder(char *str)
 	str_cpy(tmp, str, len);
 	tmp[len] = '\n';
 	tmp[len + 1] = 0;
-	//free(str);
+	free(str);
 	return (tmp);
 }
 
@@ -56,7 +56,7 @@ char	*str_dup_nt2(char *src, int len)
 {
 	char *des;
 
-	if (len <= 0)
+	if (len <= 1)
 		return (NULL);
 	des = (char *)malloc(sizeof(char) * (len + 1));
 	str_cpy(des, src, len);
@@ -79,7 +79,7 @@ char	*str_merger(char *des, char *src)
 	str_cpy(out, des, deslen);
 	str_cpy(&out[deslen], src, srclen);
 	out[deslen + srclen] = 0;
-	if (des != NULL)
+	if (deslen != 0)
 		free(des);
 	return (out);
 }
