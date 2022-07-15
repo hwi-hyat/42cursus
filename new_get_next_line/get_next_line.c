@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 21:16:30 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/15 17:08:05 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/15 18:12:36 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char	*get_next_line(int fd)
 	strs.buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	strs.line = NULL;
 	check_fd(&files, &strs, fd);
-	//printf("files is %p\n", files);
+	printf("line is %s\n", strs.line);
 	while(1)
 	{
 		if (check_nl(&strs) == 1)
@@ -119,11 +119,10 @@ char	*get_next_line(int fd)
 			strs.buf[i++] = 0;
 		read_i = read(fd, strs.buf, BUFFER_SIZE);
 		////printf("read_i is %d\n", read_i);
-		strs.buf[read_i] = 0;
 		if (read_i < 0)
 			break ;
 		strs.line = merge_str(strs.line, strs.buf);
-		////printf("line is %s, buf is %s\n", strs.line, strs.buf);
+		printf("line is %s, buf is %s\n", strs.line, strs.buf);
 	}
 	liberator(&files, fd);
 	free(strs.buf);
