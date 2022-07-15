@@ -6,18 +6,17 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 21:16:30 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/14 18:40:33 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/14 19:40:38 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-
 void	check_fd(t_files *files, t_strings *strs, int fd)
 {
 	while (files)
 	{
-		if (files->fd == fd && (*files->line != NULL))
+		if (files->fd == fd && (files->line != NULL))
 		{
 			strs->line = str_dup(files->line, -1);
 			free(files->line);
@@ -63,7 +62,7 @@ char	*get_next_line(int fd)
 	int				read_i;
 	
 	if (fd < 3)
-		return ;
+		return (NULL);
 	strs.buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	strs.line = NULL;
 	check_fd(files, &strs, fd);
@@ -78,7 +77,7 @@ char	*get_next_line(int fd)
 		read_i = read(fd, strs.buf, BUFFER_SIZE);
 		strs.buf[read_i] = 0;
 		if (read_i < 0)
-			return (NULL);
+			break ;
 		else if (read_i == 0)
 		{
 			strs.line = nl_attatcher(strs.line);
@@ -86,4 +85,26 @@ char	*get_next_line(int fd)
 		}
 		strs.line = merge_str(strs.line, strs.buf);
 	}
+	free(strs.buf);
+	return (NULL);
+}
+
+int main()
+{
+	int fd;
+
+	fd = open("./sample.txt", O_RDONLY);
+	char *out;
+	char in;
+	for(int i = 0; i < 10; i++)
+	{
+		printf("\n----------------------------------\n");
+		out = get_next_line(fd);
+		////printf("pointer is %p\n", out);
+		printf("result is %s\n", out);
+		printf("----------------------------------\n");
+	}
+	close(fd);
+	system("leaks a.out");
+	return 0;
 }

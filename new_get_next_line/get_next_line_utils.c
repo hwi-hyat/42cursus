@@ -6,15 +6,19 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 17:19:35 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/14 18:40:23 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/14 19:39:25 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "get_next_line.h"
 
 int	str_len(char *str)
 {
 	int	len;
 
 	len = 0;
+	if (str == NULL)
+		return (0);
 	while(str[len])
 		len++;
 	return (len);
@@ -25,6 +29,8 @@ void	str_cpy(char *des, char *src)
 	int	i;
 
 	i = 0;
+	if (src == NULL)
+		return ;
 	while (src[i])
 	{
 		des[i] = src[i];

@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 00:52:05 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/14 18:40:22 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/14 19:38:01 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ int		str_len(char *str);
 char	*str_dup(char *str, int len);
 char	*nl_attatcher(char *str);
 char	*merge_str(char *line, char *buf);
-
+char	*get_next_line(int fd);
 
 #endif
