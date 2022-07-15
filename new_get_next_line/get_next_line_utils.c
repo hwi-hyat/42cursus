@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 17:19:35 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/15 13:21:24 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/15 16:07:16 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,6 @@ char	*str_dup(char *str, int len)
 	return (out);
 }
 
-char	*nl_attatcher(char *str)
-{
-	int		len;
-	char	*out;
-
-	len = str_len(str);
-	out = (char *)malloc(sizeof(char) * (len + 2));
-	out = str_dup(str, -1);
-	out[len] = '\n';
-	out[len + 1] = 0;
-	free(str);
-	str = 0;
-	return (out);
-}
-
 char	*merge_str(char *line, char *buf)
 {
 	int		len_line;
@@ -79,6 +64,8 @@ char	*merge_str(char *line, char *buf)
 
 	len_line = str_len(line);
 	len_buf = str_len(buf);
+	if (len_buf == 0)
+		return (line);
 	tmp = (char *)malloc(sizeof(char) * (len_line + len_buf + 1));
 	str_cpy(tmp, line);
 	str_cpy(&tmp[len_line], buf);
@@ -86,4 +73,21 @@ char	*merge_str(char *line, char *buf)
 	free(line);
 	line = 0;
 	return(tmp);
+}
+
+void	liberator(t_files *files, int fd)
+{
+	t_files	*files_i;
+
+	files_i = files;
+	while (files_i)
+	{
+		if (files_i->fd == fd)
+		{
+			files_i->prev->next = files_i->next;
+			free(files_i);
+			return ;
+		}
+		files_i = files_i->next;
+	}
 }
