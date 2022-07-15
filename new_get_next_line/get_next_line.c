@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 21:16:30 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/15 16:33:53 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/15 17:08:05 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ void	check_fd(t_files **files, t_strings *strs, int fd)
 	files_i = *files;
 	while (files_i)
 	{
-		printf("where1?\n");
-		printf("fd of list is %d\n", files_i->fd);
+		//printf("where1?\n");
+		//printf("fd of list is %d\n", files_i->fd);
 		if (files_i->fd == fd)
 		{
-			printf("where2?\n");
+			//printf("where2?\n");
 			strs->line = files_i->line;
 			files_i->line = 0;
 			return ;
 		}
 		if(files_i->next == NULL)
 		{
-			printf("where3?\n");
+			//printf("where3?\n");
 			files_i->next = (t_files *)malloc(sizeof(t_files));
 			files_i->next->fd = fd;
 			files_i->next->prev = files_i;
@@ -39,7 +39,7 @@ void	check_fd(t_files **files, t_strings *strs, int fd)
 		files_i = files_i->next;
 	}
 	(*files) = (t_files *)malloc(sizeof(t_files));
-	printf("files is %p\n", files);
+	//printf("files is %p\n", files);
 	(*files)->fd = fd;
 	(*files)->next = NULL;
 	(*files)->prev = NULL;
@@ -78,7 +78,7 @@ int	check_nl(t_strings *strs)
 			tmp = str_dup(&strs->line[i + 1], -1);
 			free(strs->line);
 			strs->line = tmp;
-			////printf("trimmed line is %s\n", strs->line);
+			//////printf("trimmed line is %s\n", strs->line);
 			return (1);
 		}
 		i++;
@@ -99,7 +99,7 @@ char	*get_next_line(int fd)
 	strs.buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	strs.line = NULL;
 	check_fd(&files, &strs, fd);
-	printf("files is %p\n", files);
+	//printf("files is %p\n", files);
 	while(1)
 	{
 		if (check_nl(&strs) == 1)
@@ -110,7 +110,7 @@ char	*get_next_line(int fd)
 		}
 		else if (read_i == 0)
 		{
-			liberator(files, fd);
+			liberator(&files, fd);
 			free(strs.buf);
 			return (strs.line);
 		}
@@ -118,13 +118,14 @@ char	*get_next_line(int fd)
 		while (i <= BUFFER_SIZE)
 			strs.buf[i++] = 0;
 		read_i = read(fd, strs.buf, BUFFER_SIZE);
-		//printf("read_i is %d\n", read_i);
+		////printf("read_i is %d\n", read_i);
 		strs.buf[read_i] = 0;
 		if (read_i < 0)
 			break ;
 		strs.line = merge_str(strs.line, strs.buf);
-		//printf("line is %s, buf is %s\n", strs.line, strs.buf);
+		////printf("line is %s, buf is %s\n", strs.line, strs.buf);
 	}
+	liberator(&files, fd);
 	free(strs.buf);
 	return (NULL);
 }
@@ -140,7 +141,7 @@ int main()
 	{
 		printf("\n----------------------------------\n");
 		out = get_next_line(fd);
-		////////printf("pointer is %p\n", out);
+		//////////printf("pointer is %p\n", out);
 		printf("result is %s\n", out);
 		printf("----------------------------------\n");
 	}

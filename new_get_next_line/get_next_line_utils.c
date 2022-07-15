@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 17:19:35 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/15 16:07:16 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/15 17:05:00 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,19 @@ char	*merge_str(char *line, char *buf)
 	return(tmp);
 }
 
-void	liberator(t_files *files, int fd)
+void	liberator(t_files **files, int fd)
 {
 	t_files	*files_i;
 
-	files_i = files;
+	files_i = *files;
 	while (files_i)
 	{
 		if (files_i->fd == fd)
 		{
-			files_i->prev->next = files_i->next;
+			if (files_i->prev == NULL)
+				*files = files_i->next;
+			else
+				files_i->prev->next = files_i->next;
 			free(files_i);
 			return ;
 		}
