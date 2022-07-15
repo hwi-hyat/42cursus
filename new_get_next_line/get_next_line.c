@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 21:16:30 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/15 13:54:20 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/15 14:30:05 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	check_fd(t_files *files, t_strings *strs, int fd)
 	files_i = files;
 	while (files_i)
 	{
-		if (files_i->fd == fd && (files_i->line != NULL))
+		if (files_i->fd == fd)
 		{
 			printf("files->line is %s\n", files_i->line);
 			strs->line = files_i->line;
@@ -35,8 +35,8 @@ void	check_fd(t_files *files, t_strings *strs, int fd)
 		}
 		files_i = files_i->next;
 	}
-	files_i = (t_files *)malloc(sizeof(t_files));
-	files_i->fd = fd;
+	files = (t_files *)malloc(sizeof(t_files));
+	files->fd = fd;
 }
 
 void	line_saver(t_files *files, char *line, int fd)
@@ -46,10 +46,12 @@ void	line_saver(t_files *files, char *line, int fd)
 	files_i = files;
 	while(files_i)
 	{
+		printf("files->fd is %d\n", files_i->fd);
 		if (files_i->fd == fd)
 		{
-			files_i->line = line;
-			line = 0;
+			files_i->line = str_dup(line, -1);
+			free(line);
+			printf("saved line is %s\n", files_i->line);
 			return ;
 		}
 		files_i = files_i->next;
