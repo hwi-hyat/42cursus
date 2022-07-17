@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 17:19:35 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/15 17:05:00 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/17 22:36:06 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,12 @@ char	*str_dup(char *str, int len)
 
 	if (len == -1)
 		len = str_len(str);
+	//printf("len is %d\n", len);
+	if (len == 0)
+		return (NULL);
 	out = (char *)malloc(sizeof(char) * (len + 1));
 	i = 0;
-	while (i < len && str[i] != 0)
+	while (i < len)
 	{
 		out[i] = str[i];
 		i++;
@@ -56,22 +59,22 @@ char	*str_dup(char *str, int len)
 	return (out);
 }
 
-char	*merge_str(char *line, char *buf)
+char	*merge_str(t_strings *strs)
 {
 	int		len_line;
 	int		len_buf;
 	char	*tmp;
 
-	len_line = str_len(line);
-	len_buf = str_len(buf);
+	len_line = str_len(strs->line);
+	len_buf = str_len(strs->buf);
 	if (len_buf == 0)
-		return (line);
+		return (strs->line);
 	tmp = (char *)malloc(sizeof(char) * (len_line + len_buf + 1));
-	str_cpy(tmp, line);
-	str_cpy(&tmp[len_line], buf);
+	str_cpy(tmp, strs->line);
+	str_cpy(&tmp[len_line], strs->buf);
 	tmp[len_line + len_buf] = 0;
-	free(line);
-	line = 0;
+	free(strs->line);
+	strs->line = NULL;
 	return(tmp);
 }
 

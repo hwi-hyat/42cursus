@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 00:52:05 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/15 18:07:50 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/17 21:51:20 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include<stdio.h> // 나중에 지워주자
 # include<fcntl.h> // 나중에 지워주자
 
-# define BUFFER_SIZE 11 //나중에 지워줘야함
+//# define BUFFER_SIZE 1 //나중에 지워줘야함
 
 typedef struct s_files
 {
@@ -38,8 +38,8 @@ typedef struct s_strings
 int		str_len(char *str);
 char	*str_dup(char *str, int len);
 char	*nl_attatcher(char *str);
-char	*merge_str(char *line, char *buf);
-char	*get_next_line(int fd);
+char	*merge_str(t_strings *strs);
 void	liberator(t_files **files, int fd);
+char	*get_next_line(int fd);
 
 #endif
