@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 21:16:30 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/17 22:12:02 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/19 03:30:55 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	check_fd(t_files **files, t_strings *strs, int fd)
 {
@@ -19,47 +19,43 @@ void	check_fd(t_files **files, t_strings *strs, int fd)
 	files_i = *files;
 	while (files_i)
 	{
-		////printf("where1?\n");
-		////printf("fd of list is %d\n", files_i->fd);
 		if (files_i->fd == fd)
 		{
-			////printf("where2?\n");
 			strs->line = files_i->line;
-			files_i->line = 0;
+			files_i->line = NULL;
 			return ;
 		}
-		if(files_i->next == NULL)
+		if (files_i->next == NULL)
 		{
-			////printf("where3?\n");
 			files_i->next = (t_files *)malloc(sizeof(t_files));
 			files_i->next->fd = fd;
+			files_i->next->line = NULL;
+			files_i->next->next = NULL;
 			files_i->next->prev = files_i;
 			return ;
 		}
 		files_i = files_i->next;
 	}
 	(*files) = (t_files *)malloc(sizeof(t_files));
-	////printf("files is %p\n", files);
 	(*files)->fd = fd;
+	(*files)->line = NULL;
 	(*files)->next = NULL;
 	(*files)->prev = NULL;
 }
 
-void	line_saver(t_files *files, char *line, int fd)
+void	line_saver(t_files *files, t_strings *strs, int fd)
 {
 	t_files	*files_i;
 
 	files_i = files;
-	while(files_i)
+	while (files_i)
 	{
 		if (files_i->fd == fd)
 		{
-			//printf("saving %s\n", line);
-			if (line != NULL)
+			if (strs->line != NULL)
 			{
-				files_i->line = str_dup(line, -1);
-				free(line);
-				line = NULL;
+				files_i->line = strs->line;
+				strs->line = NULL;
 			}
 			return ;
 		}
@@ -80,12 +76,9 @@ int	check_nl(t_strings *strs)
 		if (strs->line[i] == '\n')
 		{
 			strs->ret = str_dup(strs->line, i + 1);
-			//printf("gogo tmp\n");
 			tmp = str_dup(&strs->line[i + 1], -1);
-			//strs->line[i + 1]에서?? 여기맞는데
 			free(strs->line);
 			strs->line = tmp;
-			//printf("trimmed line is %s\n", strs->line);
 			return (1);
 		}
 		i++;
@@ -99,40 +92,36 @@ char	*get_next_line(int fd)
 	t_strings		strs;
 	int				read_i;
 	int				i;
-	
-	read_i = -1;
-	if (fd < 3)
+
+	if (fd < 0)
 		return (NULL);
-	strs.buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	strs.buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	strs.line = NULL;
 	check_fd(&files, &strs, fd);
-	//printf("line is %s\n", strs.line);
-	while(1)
+	while (1)
 	{
-		//printf("line is %s, buf is %s\n", strs.line, strs.buf);
+		i = 0;
+		while (i <= BUFFER_SIZE)
+			strs.buf[i++] = 0;
+		read_i = read(fd, strs.buf, BUFFER_SIZE);
+		if (read_i < 0)
+			break ;
+		strs.line = merge_str(&strs);
 		if (check_nl(&strs) == 1)
 		{
-			line_saver(files, strs.line, fd);
+			line_saver(files, &strs, fd);
 			free(strs.buf);
 			return (strs.ret);
 		}
-		else if (read_i == 0)
+		if (read_i == 0)
 		{
 			liberator(&files, fd);
 			free(strs.buf);
 			return (strs.line);
 		}
-		i = 0;
-		while (i <= BUFFER_SIZE)
-			strs.buf[i++] = 0;
-		read_i = read(fd, strs.buf, BUFFER_SIZE);
-		//////printf("read_i is %d\n", read_i);
-		if (read_i < 0)
-			break ;
-		//printf("line is %s, buf is %s\n", strs.line, strs.buf);
-		strs.line = merge_str(&strs);
-		//printf("line is %s, buf is %s\n", strs.line, strs.buf);
 	}
+	if (strs.line != NULL)
+		free(strs.line);
 	liberator(&files, fd);
 	free(strs.buf);
 	return (NULL);
@@ -144,7 +133,7 @@ int main()
 
 	fd = open("./sample.txt", O_RDONLY);
 	char *out;
-	char in;
+	//char in;
 	for(int i = 0; i < 10; i++)
 	{
 		printf("\n----------------------------------\n");

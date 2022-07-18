@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 17:19:35 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/17 22:36:06 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/19 03:35:09 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	str_len(char *str)
 {
@@ -19,7 +19,7 @@ int	str_len(char *str)
 	len = 0;
 	if (str == NULL)
 		return (0);
-	while(str[len])
+	while (str[len])
 		len++;
 	return (len);
 }
@@ -45,7 +45,6 @@ char	*str_dup(char *str, int len)
 
 	if (len == -1)
 		len = str_len(str);
-	//printf("len is %d\n", len);
 	if (len == 0)
 		return (NULL);
 	out = (char *)malloc(sizeof(char) * (len + 1));
@@ -75,7 +74,7 @@ char	*merge_str(t_strings *strs)
 	tmp[len_line + len_buf] = 0;
 	free(strs->line);
 	strs->line = NULL;
-	return(tmp);
+	return (tmp);
 }
 
 void	liberator(t_files **files, int fd)
@@ -88,9 +87,17 @@ void	liberator(t_files **files, int fd)
 		if (files_i->fd == fd)
 		{
 			if (files_i->prev == NULL)
+			{
 				*files = files_i->next;
+				if (files_i->next != NULL)
+					files_i->next->prev = NULL;
+			}
 			else
+			{
 				files_i->prev->next = files_i->next;
+				if (files_i->next != NULL)
+					files_i->next->prev = files_i->prev;
+			}
 			free(files_i);
 			return ;
 		}

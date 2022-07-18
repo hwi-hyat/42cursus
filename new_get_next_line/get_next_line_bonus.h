@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 00:52:05 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/17 21:51:20 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/19 02:54:16 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include<unistd.h>
 # include<stdlib.h>
-# include<stdio.h> // 나중에 지워주자
-# include<fcntl.h> // 나중에 지워주자
-
-//# define BUFFER_SIZE 1 //나중에 지워줘야함
 
 typedef struct s_files
 {
@@ -26,14 +22,14 @@ typedef struct s_files
 	char			*line;
 	struct s_files	*prev;
 	struct s_files	*next;
-} t_files;
+}	t_files;
 
 typedef struct s_strings
 {
 	char	*buf;
 	char	*line;
 	char	*ret;
-} t_strings;
+}	t_strings;
 
 int		str_len(char *str);
 char	*str_dup(char *str, int len);
