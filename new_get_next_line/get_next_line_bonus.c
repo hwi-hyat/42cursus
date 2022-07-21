@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 21:16:30 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/21 17:18:21 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/21 23:35:05 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	check_nl(t_strings *strs)
 char	*cycle(t_files **files, t_strings *strs, int *read_i, int fd)
 {
 	int	i;
-
+	
 	while (1)
 	{
 		i = 0;
@@ -110,8 +110,7 @@ char	*cycle(t_files **files, t_strings *strs, int *read_i, int fd)
 		if (*read_i == 0)
 		{
 			liberator(files, fd);
-			strs->ret = strs->line;
-			strs->line = NULL;
+			strs->ret = str_dup(strs->line, -1);
 			return (strs->ret);
 		}
 	}
@@ -129,28 +128,6 @@ char	*get_next_line(int fd)
 	strs.line = NULL;
 	check_fd(&files, &strs, fd);
 	strs.ret = cycle(&files, &strs, &read_i, fd);
-	/*while (1)
-	{
-		i = 0;
-		while (i <= BUFFER_SIZE)
-			strs.buf[i++] = 0;
-		read_i = read(fd, strs.buf, BUFFER_SIZE);
-		if (read_i < 0)
-			break ;
-		strs.line = merge_str(&strs);
-		if (check_nl(&strs) == 1)
-		{
-			line_saver(files, &strs, fd);
-			free(strs.buf);
-			return (strs.ret);
-		}
-		if (read_i == 0)
-		{
-			liberator(&files, fd);
-			free(strs.buf);
-			return (strs.line);
-		}
-	}*/
 	if (strs.line != NULL)
 		free(strs.line);
 	free(strs.buf);
