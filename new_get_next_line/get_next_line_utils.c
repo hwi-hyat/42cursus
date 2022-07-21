@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 17:19:35 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/21 16:22:24 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/19 14:11:11 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 int	str_len(char *str)
 {
@@ -72,8 +72,7 @@ char	*merge_str(t_strings *strs)
 	str_cpy(tmp, strs->line);
 	str_cpy(&tmp[len_line], strs->buf);
 	tmp[len_line + len_buf] = 0;
-	if (strs->line != NULL)
-		free(strs->line);
+	free(strs->line);
 	strs->line = NULL;
 	return (tmp);
 }
