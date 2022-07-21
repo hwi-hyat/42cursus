@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 21:16:30 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/21 14:50:25 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/21 17:18:21 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	check_nl(t_strings *strs)
 	return (0);
 }
 
-char	*cycle(t_files *files, t_strings *strs, int *read_i, int fd)
+char	*cycle(t_files **files, t_strings *strs, int *read_i, int fd)
 {
 	int	i;
 
@@ -98,18 +98,18 @@ char	*cycle(t_files *files, t_strings *strs, int *read_i, int fd)
 		*read_i = read(fd, strs->buf, BUFFER_SIZE);
 		if (*read_i < 0)
 		{
-			liberator(&files, fd);
+			liberator(files, fd);
 			return (NULL);
 		}
 		strs->line = merge_str(strs);
 		if (check_nl(strs) == 1)
 		{
-			line_saver(files, strs, fd);
+			line_saver(*files, strs, fd);
 			return (strs->ret);
 		}
 		if (*read_i == 0)
 		{
-			liberator(&files, fd);
+			liberator(files, fd);
 			strs->ret = strs->line;
 			strs->line = NULL;
 			return (strs->ret);
@@ -128,7 +128,7 @@ char	*get_next_line(int fd)
 	strs.buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	strs.line = NULL;
 	check_fd(&files, &strs, fd);
-	strs.ret = cycle(files, &strs, &read_i, fd);
+	strs.ret = cycle(&files, &strs, &read_i, fd);
 	/*while (1)
 	{
 		i = 0;
