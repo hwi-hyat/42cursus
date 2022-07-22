@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 00:52:05 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/21 14:50:03 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/22 17:44:19 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ char	*nl_attatcher(char *str);
 char	*merge_str(t_strings *strs);
 void	liberator(t_files **files, int fd);
 char	*get_next_line(int fd);
+int		files_init(t_files **node, int fd);
 
 #endif

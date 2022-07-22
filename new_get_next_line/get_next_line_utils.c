@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 17:19:35 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/19 14:11:11 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/22 17:44:41 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,6 @@ int	str_len(char *str)
 	return (len);
 }
 
-void	str_cpy(char *des, char *src)
-{
-	int	i;
-
-	i = 0;
-	if (src == NULL)
-		return ;
-	while (src[i])
-	{
-		des[i] = src[i];
-		i++;
-	}
-}
-
 char	*str_dup(char *str, int len)
 {
 	int		i;
@@ -48,6 +34,8 @@ char	*str_dup(char *str, int len)
 	if (len == 0)
 		return (NULL);
 	out = (char *)malloc(sizeof(char) * (len + 1));
+	if (out == NULL)
+		return (NULL);
 	i = 0;
 	while (i < len)
 	{
@@ -63,16 +51,24 @@ char	*merge_str(t_strings *strs)
 	int		len_line;
 	int		len_buf;
 	char	*tmp;
+	int		i;
 
 	len_line = str_len(strs->line);
 	len_buf = str_len(strs->buf);
 	if (len_buf == 0)
 		return (strs->line);
 	tmp = (char *)malloc(sizeof(char) * (len_line + len_buf + 1));
-	str_cpy(tmp, strs->line);
-	str_cpy(&tmp[len_line], strs->buf);
+	if (tmp == NULL)
+		return (NULL);
+	i = -1;
+	while (strs->line && strs->line[++i])
+		tmp[i] = strs->line[i];
+	i = -1;
+	while (strs->buf && strs->buf[++i])
+		tmp[len_line + i] = strs->buf[i];
 	tmp[len_line + len_buf] = 0;
-	free(strs->line);
+	if (strs->line != NULL)
+		free(strs->line);
 	strs->line = NULL;
 	return (tmp);
 }
@@ -103,4 +99,16 @@ void	liberator(t_files **files, int fd)
 		}
 		files_i = files_i->next;
 	}
+}
+
+int	files_init(t_files **node, int fd)
+{
+	*node = (t_files *)malloc(sizeof(t_files));
+	if (*node == NULL)
+		return (-1);
+	(*node)->fd = fd;
+	(*node)->line = NULL;
+	(*node)->next = NULL;
+	(*node)->prev = NULL;
+	return (0);
 }
