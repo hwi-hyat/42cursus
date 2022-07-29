@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 22:02:11 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/28 22:29:21 by siykim           ###   ########.fr       */
+/*   Updated: 2022/07/29 12:54:18 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 unsigned char g_tmp;
 
-void	sig1()
+void	sig1(void)
 {
 	g_tmp >>= 1;
 }
 
-void	sig2()
+void	sig2(void)
 {
 	g_tmp >>= 1;
 	g_tmp += 128;
