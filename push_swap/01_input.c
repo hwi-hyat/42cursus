@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   01_input.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 20:35:36 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/24 21:11:46 by siykim           ###   ########.fr       */
+/*   Created: 2022/07/28 23:49:35 by siykim            #+#    #+#             */
+/*   Updated: 2022/07/28 23:51:07 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "push_swap.h"
 
-# include<unistd.h>
-# include<stdarg.h>
-# include<stdint.h>
-
-int				type_c(va_list *ap);
-int				type_s(va_list *ap);
-int				type_p(va_list *ap);
-int				type_di(va_list *ap);
-int				type_x(va_list *ap);
-int				type_largex(va_list *ap);
-int				ft_printf(const char *str, ...);
-unsigned int	type_u(va_list *ap);
-
-#endif
+void	input_main(int argc, char **argv)
+{
+	
+}

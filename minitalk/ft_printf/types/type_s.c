@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   type_s.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 20:35:36 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/24 21:11:46 by siykim           ###   ########.fr       */
+/*   Created: 2022/05/02 22:13:58 by siykim            #+#    #+#             */
+/*   Updated: 2022/07/24 21:15:16 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include"../../minitalk.h"
 
-# include<unistd.h>
-# include<stdarg.h>
-# include<stdint.h>
+int	ft_strlen(char *str)
+{
+	int	len;
 
-int				type_c(va_list *ap);
-int				type_s(va_list *ap);
-int				type_p(va_list *ap);
-int				type_di(va_list *ap);
-int				type_x(va_list *ap);
-int				type_largex(va_list *ap);
-int				ft_printf(const char *str, ...);
-unsigned int	type_u(va_list *ap);
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
+}
 
-#endif
+int	type_s(va_list *ap)
+{
+	char	*out;
+	int		len;
+
+	out = va_arg(*ap, char *);
+	if (out == 0)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+	len = ft_strlen(out);
+	write(1, out, len);
+	return (len);
+}

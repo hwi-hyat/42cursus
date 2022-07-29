@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 20:35:36 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/24 21:11:46 by siykim           ###   ########.fr       */
+/*   Created: 2022/07/28 23:24:50 by siykim            #+#    #+#             */
+/*   Updated: 2022/07/28 23:43:52 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include<unistd.h>
-# include<stdarg.h>
-# include<stdint.h>
+# include<stdlib.h>
+# include<stdio.h> // 나중에 지워주자
 
-int				type_c(va_list *ap);
-int				type_s(va_list *ap);
-int				type_p(va_list *ap);
-int				type_di(va_list *ap);
-int				type_x(va_list *ap);
-int				type_largex(va_list *ap);
-int				ft_printf(const char *str, ...);
-unsigned int	type_u(va_list *ap);
+
+
+//utilities
+int	ft_atoi(const char *str);
+int	str_len(char *str);
+
 
 #endif
