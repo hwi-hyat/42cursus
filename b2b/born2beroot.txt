@@ -1,4 +1,5 @@
 ﻿Mandatory part
+
 The project consists of creating and configuring a virtual machine following strict rules. The student being evaluated will have to help you during the defense. Make sure that all of the following points are observed.
 Project overview
 - The student being evaluated should explain to you simply:
@@ -14,7 +15,8 @@ every 10 minutes. Its operation will be checked in detail later.
 If the explanations are not clear, the evaluation stops here.
  Yes
  No
-[오전 12:41] Simple setup
+
+
 Remember: Whenever you need help checking something, the student being evaluated
 should be able to help you.
 - Ensure that the machine does not have a graphical environment at launch.
@@ -27,7 +29,8 @@ Pay attention to the password chosen, it must follow the rules imposed in the su
 - Check that the chosen operating system is Debian or CentOS with the help of the evaluator.
 If something does not work as expected or is not clearly explained,
 the evaluation stops here.
-[오전 12:42] User
+
+
 Remember: Whenever you need help checking something, the student being evaluated
 should be able to help you.
 The subject requests that a user with the login of the student being evaluated is present
@@ -47,6 +50,8 @@ for it does not count.
 If something does not work as expected or is not clearly explained, the evaluation stops here.
  Yes
  No
+
+
 Hostname and partitions
 Remember: Whenever you need help checking something, the student being evaluated
 should be able to help you.
@@ -64,6 +69,8 @@ If something does not work as expected or is not clearly explained,
 the evaluation stops here.
  Yes
  No
+
+
 SUDO
 Remember: Whenever you need help checking something, the student being evaluated
 should be able to help you.
@@ -79,6 +86,8 @@ have been updated.
 If something does not work as expected or is not clearly explained, the evaluation stops here.
  Yes
  No
+
+
 UFW
 Remember: Whenever you need help checking something, the student being evaluated
 should be able to help you.
@@ -92,6 +101,8 @@ value of using it.
 If something does not work as expected or is not clearly explained, the evaluation stops here.
  Yes
  No
+
+
 SSH
 Remember: Whenever you need help checking something, the student being evaluated
 should be able to help you.
@@ -106,6 +117,8 @@ Of course, you have to make sure that you cannot use SSH with the "root" user as
 If something does not work as expected or is not clearly explained, the evaluation stops here.
  Yes
  No
+
+
 Script monitoring
 Remember: Whenever you need help checking something, the student being evaluated
 should be able to help you.
@@ -125,6 +138,8 @@ has not been modified.
 If something does not work as expected or is not clearly explained, the evaluation stops here.
  Yes
  No
+
+ 
 Bonus
 Evaluate the bonus part if, and only if, the mandatory part has been entirely and perfectly done, and the error management handles unexpected or bad usage. In case all the mandatory points were not passed during the defense, bonus points must be totally ignored.
 Bonus
