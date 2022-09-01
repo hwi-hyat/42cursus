@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 17:34:54 by siykim            #+#    #+#             */
-/*   Updated: 2022/08/03 21:50:17 by siykim           ###   ########.fr       */
+/*   Updated: 2022/08/24 14:55:10 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	sort_main(t_stack *stack)
 {
-	(void *)stack;
+	//(void *)stack;
 }
 

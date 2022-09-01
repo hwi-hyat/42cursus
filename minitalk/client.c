@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 22:02:16 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/29 12:53:55 by siykim           ###   ########.fr       */
+/*   Updated: 2022/09/01 11:27:23 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ int	main(int argc, char **argv)
 	pid_t	pid;
 	int		i;
 
+	if(argc != 3)
+	{
+		write(2, "Input Error\n", 12);
+		return (0);
+	}
 	pid = ft_atoi(argv[1]);
 	i = 0;
 	while (1)

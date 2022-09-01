@@ -1,68 +1,43 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/04/20 01:34:26 by siykim            #+#    #+#              #
-#    Updated: 2022/07/28 22:41:19 by siykim           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
-SERVER_SRCS	=	server.c \
-				ft_printf/ft_printf.c \
-				ft_printf/types/type_di.c \
-				ft_printf/types/type_s.c
+NAME		=	minitalk
 
-CLIENT_SRCS	=	client.c \
-				ft_printf/ft_printf.c \
-				ft_printf/types/type_di.c \
-				ft_printf/types/type_s.c
+SERVER		=	server
 
-SERVER_OBJS	=	${SERVER_SRCS:.c=.o}
+CLIENT		=	client
 
-CLIENT_OBJS	=	${CLIENT_SRCS:.c=.o}
-
-SERVER_NAME	=	server
-
-CLIENT_NAME	=	client
-
-CC			=	cc
+CC			=	gcc
 
 CFLAGS		=	-Wall -Wextra -Werror
 
-${SERVER_NAME}: ${SERVER_OBJS}
-	ar -rc ${SERVER_NAME} ${SERVER_OBJS}
-	ranlib ${SERVER_NAME}
+SERVER_SRCS	=	server.c	\
+				ft_printf/ft_printf.c \
+				ft_printf/types/type_di.c \
+				ft_printf/types/type_s.c
 
-${CLIENT_NAME}: ${CLIENT_OBJS}
-	ar -rc ${CLIENT_NAME} ${CLIENT_OBJS}
-	ranlib ${CLIENT_NAME}
+CLINET_SRCS	=	client.c
 
-.c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
-	
-all: 
-	${SERVER_NAME}
-	${CLIENT_NAME}
+SERVER_OBJS	=	server.o	\
+				ft_printf/ft_printf.o \
+				ft_printf/types/type_di.o \
+				ft_printf/types/type_s.o
 
-server:
-	${SERVER_NAME}
-	
-client:
-	${CLIENT_NAME}
+CLIENT_OBJS	=	client.o
+
+$(NAME)		:	$(SERVER) $(CLIENT)
+
+$(SERVER)	:	$(SERVER_OBJS)
+	$(CC) $(SERVER_OBJS) -o $(SERVER)
+
+$(CLIENT)	:	$(CLIENT_OBJS)
+	$(CC) $(CLIENT_OBJS) -o $(CLIENT)
+
+all:	$(NAME)
 
 clean:
-	rm -f ${SERVER_OBJS}
-	rm -f ${CLIENT_OBJS}
+	rm -rf $(SERVER_OBJS) $(CLIENT_OBJS)
 
 fclean: clean
-	rm -f ${SERVER_NAME}
-	rm -f ${CLIENT_NAME}
+	rm -rf $(SERVER)
+	rm -rf $(CLIENT)
 
-re: 
-	make fclean
-	make all
-
-.PHONY: all clean fclean re server client
+re: all clean fclean

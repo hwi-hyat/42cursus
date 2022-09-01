@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 22:02:11 by siykim            #+#    #+#             */
-/*   Updated: 2022/07/29 12:54:18 by siykim           ###   ########.fr       */
+/*   Updated: 2022/09/01 10:19:10 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 unsigned char g_tmp;
 
-void	sig1(void)
+void	sig_handle(int sig)
 {
-	g_tmp >>= 1;
-}
-
-void	sig2(void)
-{
-	g_tmp >>= 1;
-	g_tmp += 128;
+	if (sig == SIGUSR1)
+		g_tmp >>= 1;
+	if (sig == SIGUSR2)
+	{
+		g_tmp >>= 1;
+		g_tmp += 128;
+	}
 }
 
 void	running(void)
@@ -48,8 +48,8 @@ void	running(void)
 
 int	main(void)
 {
-	signal(SIGUSR1, sig1);
-	signal(SIGUSR2, sig2);
+	signal(SIGUSR1, sig_handle);
+	signal(SIGUSR2, sig_handle);
 	ft_printf("Process ID : %d\n", getpid());
 	running();
 	return (0);

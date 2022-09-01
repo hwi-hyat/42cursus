@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 23:24:06 by siykim            #+#    #+#             */
-/*   Updated: 2022/08/03 21:51:56 by siykim           ###   ########.fr       */
+/*   Updated: 2022/08/24 15:55:47 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,20 @@ int	main(int argc, char **argv)
 	sort_main(&stack);
 
 	printer(&stack);
+	printf("\nswap a\n\n");
 	swap_a(&stack);
-	printf("\nswapped a\n\n");
+	printer(&stack);
+	printf("\npush b\n\n");
+	push_b(&stack);
+	printer(&stack);
+	printf("\nrotate a\n\n");
+	rotate_a(&stack);
+	printer(&stack);
+	printf("\nreverse rotate a\n\n");
+	reverse_rotate_a(&stack);
+	printer(&stack);
+	printf("\npush a\n\n");
+	push_a(&stack);
 	printer(&stack);
 
 
