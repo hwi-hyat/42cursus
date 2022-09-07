@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 23:24:06 by siykim            #+#    #+#             */
-/*   Updated: 2022/08/24 15:55:47 by siykim           ###   ########.fr       */
+/*   Updated: 2022/09/07 15:46:10 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,28 @@ void printer(t_stack *stack)
 	{
 		printf("%d ", stack->a[i]);
 	}
-	printf("\n");
+	printf("TOP\n");
 	printf("b : ");
 	for(int i = 0; i <= stack->b_top; i++)
 	{
 		printf("%d ", stack->b[i]);
 	}
-	printf("\n");
+	printf("TOP\n");
 }
 
 int	main(int argc, char **argv)
 {
 	t_stack stack;
 
-	init_stack(argc, &stack);
-	fill_stack(argv, &stack);
+	init_stack(argc, argv, &stack);
 	sort_main(&stack);
 
+	printer(&stack);
+
+
+
+
+/*
 	printer(&stack);
 	printf("\nswap a\n\n");
 	swap_a(&stack);
@@ -52,7 +57,7 @@ int	main(int argc, char **argv)
 	printf("\npush a\n\n");
 	push_a(&stack);
 	printer(&stack);
-
+*/
 
 	return (0);
 }

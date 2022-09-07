@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 00:31:24 by siykim            #+#    #+#             */
-/*   Updated: 2022/08/03 17:30:18 by siykim           ###   ########.fr       */
+/*   Updated: 2022/09/07 15:40:34 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	fill_stack(char **argv, t_stack *stack)
 	repeat_check(stack);
 }
 
-void	init_stack(int argc, t_stack *stack)
+void	init_stack(int argc, char **argv, t_stack *stack)
 {		
 	stack->numbers = argc - 1;
 	stack->a = (int *)malloc(sizeof(int) * stack->numbers);
@@ -55,6 +55,7 @@ void	init_stack(int argc, t_stack *stack)
 	stack->b = (int *)malloc(sizeof(int) * stack->numbers);
 	if (stack->b == NULL)
 		error(stack);
+	fill_stack(argv, stack);
 }
 
 void liberate_stack(t_stack *stack)
