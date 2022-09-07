@@ -40,4 +40,6 @@ fclean: clean
 	rm -rf $(SERVER)
 	rm -rf $(CLIENT)
 
-re: all clean fclean
+re:
+	make fclean
+	make all

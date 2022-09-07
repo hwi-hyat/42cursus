@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 22:02:11 by siykim            #+#    #+#             */
-/*   Updated: 2022/09/01 10:19:10 by siykim           ###   ########.fr       */
+/*   Updated: 2022/09/01 23:06:29 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	sig_handle(int sig)
 {
 	if (sig == SIGUSR1)
 		g_tmp >>= 1;
-	if (sig == SIGUSR2)
+	else if (sig == SIGUSR2)
 	{
 		g_tmp >>= 1;
 		g_tmp += 128;
