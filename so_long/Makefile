@@ -5,42 +5,36 @@
 #                                                     +:+ +:+         +:+      #
 #    By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/04/20 01:34:26 by siykim            #+#    #+#              #
-#    Updated: 2022/09/07 18:42:29 by siykim           ###   ########.fr        #
+#    Created: 2022/10/25 01:04:10 by siykim            #+#    #+#              #
+#    Updated: 2022/10/25 01:06:37 by siykim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	push_swap.c				\
-				utilities.c				\
-				00_stack.c				\
-				00_stack_ops1.c			\
-				00_stack_ops2.c			\
-				00_stack_ops_executor.c	\
-				01_sort.c				
-
-OBJS		=	${SRCS:.c=.o}
-
-NAME		=	push_swap
+NAME		=	so_long
 
 CC			=	cc
 
 CFLAGS		=	-Wall -Wextra -Werror
 
-#.c.o:
-#	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+SRCS	=	so_long.c\
+			libft_so_long.c\
+			00_util.c\
+			01_parse_map.c\
 
-${NAME}: $(OBJS)
+
+OBJS	=	
+
+$(NAME)	:	$(OBJS)
 	$(CC) $(OBJS) -o $(NAME)
 
-all: ${NAME}
+all:	$(NAME)
 
 clean:
-	rm -f ${OBJS}
+	rm -rf $(OBJS)
 
 fclean: clean
-	rm -f ${NAME}
-
-re: 
+	rm -rf $(NAME)
+re:
 	make fclean
 	make all
 

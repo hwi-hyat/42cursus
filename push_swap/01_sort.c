@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 17:34:54 by siykim            #+#    #+#             */
-/*   Updated: 2022/09/07 16:29:51 by siykim           ###   ########.fr       */
+/*   Updated: 2022/09/07 20:29:16 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,35 +39,28 @@ int	set_pivot(int *stack, int start, int end)
 	return (nums[1]);
 }
 
-void 	devide(t_stack *stack)//, char which)
+void 	devide_a(t_stack *stack, int size)
 {
-	//int	*current_stack;
 	int	pivot;
 	int	i;
 
-	pivot = set_pivot(stack->a, 0, stack->a_top);
+	pivot = set_pivot(stack->a, 0, size - 1);
 	printf("pivot is %d\n", pivot);
 	i = 0;
-	while(i <= stack->a_top)
+	while(i <= size)
 	{
-		printf("checking a_top : %d  pivot : %d  ", stack->a[stack->a_top], pivot);
 		if (stack->a[stack->a_top] >= pivot)
-		{
-			printf("pb \n");
 			exe("pb", stack);
-		}
 		else
-		{
-			printf("ra \n");
 			exe("ra", stack);
-		}
 		i++;
 	}
-
+	devide_a(stack, stack->a_top + 1);
+	
 }
 
 void	sort_main(t_stack *stack)
 {
-	devide(stack);
+	devide_a(stack, stack->numbers);
 }
 

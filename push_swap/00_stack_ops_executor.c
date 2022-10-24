@@ -6,13 +6,11 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 10:49:48 by siykim            #+#    #+#             */
-/*   Updated: 2022/09/07 16:29:54 by siykim           ###   ########.fr       */
+/*   Updated: 2022/09/07 18:39:08 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-
 
 void	exe_r(char *op, t_stack *stack)
 {
