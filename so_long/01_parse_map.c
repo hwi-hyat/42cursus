@@ -6,41 +6,50 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:37:37 by siykim            #+#    #+#             */
-/*   Updated: 2022/10/25 00:53:35 by siykim           ###   ########.fr       */
+/*   Updated: 2022/10/26 00:55:56 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	x_check(int *info_x, int x)
+void	obj_check(t_map_info *info, t_map_check *check, char buf)
 {
-	if (*info_x == 0)
-		*info_x = x;
-	else if (*info_x != x)
-		error_exit(0);
+	if (buf == 'C')
+		info->c_cnt++;
+	else if (buf == 'P')
+	{
+		info->p_cnt++;
+		info->p_y = check->y_count;
+		info->p_x = check->x_count;
+	}
+	else if (buf == 'E')
+		info->e_cnt++;
+	else if (buf != '1' && buf != '0' && buf != 'P'
+		&& buf != 'C' && buf != 'E' && buf != '\n')
+		code_exit(1);
 }
 
-void	map_checker(t_map_info *info)
+void	map_checker(t_map_info *info, t_map_check *check)
 {
-	char	buf;
-	int		map_fd;
-	int		y_count;
-	int		x_count;
+	int			map_fd;
+	char		buf;
 
 	map_fd = open("map.ber", O_RDONLY);
-	y_count = 0;
-	x_count = 0;
 	while (read(map_fd, &buf, 1) > 0)
 	{
-		x_count++;
+		obj_check(info, check, buf);
+		check->x_count++;
 		if (buf == '\n')
 		{
-			x_check(&info->x, x_count);
-			x_count = 0;
-			y_count++;
+			if (info->x == 0)
+				info->x = check->x_count;
+			else if (info->x != check->x_count)
+				code_exit(1);
+			check->x_count = 0;
+			check->y_count++;
 		}
 	}
-	info->y = y_count;
+	info->y = check->y_count;
 	close(map_fd);
 }
 
@@ -63,34 +72,38 @@ char	*line_parser(int fd, int x)
 	return (out);
 }
 
-char	**map_parser(t_map_info *info)
+void	map_parser(t_map_info *info)
 {
-	char	**map;
 	int		map_fd;
 	int		i;
 
-	map = (char **)ft_calloc(info->y, sizeof(char *));
-	if (!map)
-		error_exit(1);
+	info->map = (char **)ft_calloc(info->y, sizeof(char *));
+	if (!info->map)
+		code_exit(2);
 	map_fd = open("map.ber", O_RDONLY);
 	i = 0;
 	while (i < info->y)
 	{
-		map[i] = line_parser(map_fd, info->x);
-		if (!map[i])
-			malloc_error_esc(map, info);
+		info->map[i] = line_parser(map_fd, info->x);
+		if (!info->map[i])
+			liberate_esc(info, 2);
 		i++;
 	}
-	return (map);
 }
 
-char	**parse_map(t_map_info *info)
+void	parse_map(t_map_info *info)
 {
-	char		**map;
+	t_map_check	check;
 
+	check.y_count = 0;
+	check.x_count = 0;
+	info->c_cnt = 0;
+	info->p_cnt = 0;
+	info->e_cnt = 0;
 	info->x = 0;
 	info->y = 0;
-	map_checker(info);
-	map = map_parser(info);
-	return (map);
+	info->moves = 0;
+	map_checker(info, &check);
+	map_parser(info);
+	wall_check(info, &check);
 }
