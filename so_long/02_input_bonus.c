@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_so_long_2.c                                  :+:      :+:    :+:   */
+/*   02_input_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 21:33:12 by siykim            #+#    #+#             */
-/*   Updated: 2022/10/25 21:33:19 by siykim           ###   ########.fr       */
+/*   Created: 2022/10/25 18:19:59 by siykim            #+#    #+#             */
+/*   Updated: 2022/10/26 17:12:52 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"so_long.h"
 
-size_t	ft_strlen(const char *s)
+int	key_input(int input, t_map_info *f)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	if (input == 53)
+		liberate_esc(f, 0);
+	else
+		move(f, input);
+	paint_map(f);
+	return (0);
 }

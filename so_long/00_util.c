@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:56:16 by siykim            #+#    #+#             */
-/*   Updated: 2022/10/25 21:17:57 by siykim           ###   ########.fr       */
+/*   Updated: 2022/10/26 17:08:06 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,29 @@ void	code_exit(int code)
 	if (code == 0)
 		exit(0);
 	else if (code == 1)
-		write(2, "invalid map\n", 12);
+		printf("invailed map\n");
 	else if (code == 2)
-		write(2, "allocation error\n", 17);
-	
+		printf("allocation error\n");
 	exit(1);
 }
 
-void	liberator(t_map_info *info)
+void	liberator(t_map_info *f)
 {
 	int	i;
 
 	i = 0;
-	while (i < info->y)
+	while (i < f->y)
 	{
-		if (info->map[i])
-			free(info->map[i]);
+		if (f->map[i])
+			free(f->map[i]);
 		i++;
 	}
-	if (info->map)
-		free(info->map);
+	if (f->map)
+		free(f->map);
 }
 
-void	liberate_esc(t_map_info *info, int code)
+void	liberate_esc(t_map_info *f, int code)
 {
-	liberator(info);
+	liberator(f);
 	code_exit(code);
 }

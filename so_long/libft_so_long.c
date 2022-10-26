@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:06:53 by siykim            #+#    #+#             */
-/*   Updated: 2022/10/25 21:31:27 by siykim           ###   ########.fr       */
+/*   Updated: 2022/10/26 17:06:06 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	*ft_calloc(size_t count, size_t size)
 	}
 	return ((void *)out);
 }
-
 
 int	counter(int n)
 {
