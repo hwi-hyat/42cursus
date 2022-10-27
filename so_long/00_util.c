@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:56:16 by siykim            #+#    #+#             */
-/*   Updated: 2022/10/26 17:08:06 by siykim           ###   ########.fr       */
+/*   Updated: 2022/10/27 15:09:40 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	code_exit(int code)
 	if (code == 0)
 		exit(0);
 	else if (code == 1)
-		printf("invailed map\n");
+		write(2, "invalid map\n", 12);
 	else if (code == 2)
-		printf("allocation error\n");
+		write(2, "allocation error\n", 17);
 	exit(1);
 }
 
