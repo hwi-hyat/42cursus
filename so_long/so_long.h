@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 10:33:37 by siykim            #+#    #+#             */
-/*   Updated: 2022/10/26 17:35:55 by siykim           ###   ########.fr       */
+/*   Updated: 2022/10/27 14:28:57 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include<unistd.h>
 # include<stdlib.h>
 # include<fcntl.h>
+# include<stdio.h>
 # include"./mlx/mlx.h"
-# include<stdio.h> // 나중에 지워주기
 
 typedef struct s_map_f {
 	char	**map;

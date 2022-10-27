@@ -6,11 +6,13 @@
 #    By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 01:04:10 by siykim            #+#    #+#              #
-#    Updated: 2022/10/26 17:47:01 by siykim           ###   ########.fr        #
+#    Updated: 2022/10/27 14:29:51 by siykim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	so_long
+
+BONUS		= 	so_long_bonus
 
 CC			=	cc
 
@@ -53,18 +55,21 @@ BONUS_OBJS	=	so_long.o\
 				03_set_image_bonus.o
 
 $(NAME)	:	$(OBJS)
-	$(CC) $(CFLAGS) -L./mlx -lmlx -framework OpenGL -framework AppKit $^ -o so_long
+	$(CC) $(CFLAGS) -L./mlx -lmlx -framework OpenGL -framework AppKit $^ -o $(NAME)
 
-bonus	:	$(BONUS_OBJS)
-	$(CC) $(CFLAGS) -L./mlx -lmlx -framework OpenGL -framework AppKit $^ -o so_long_bonus
+$(BONUS)	:	$(BONUS_OBJS)
+	$(CC) $(CFLAGS) -L./mlx -lmlx -framework OpenGL -framework AppKit $^ -o $(BONUS)
 	
 all		:	$(NAME)
+
+bonus	:	$(BONUS)
 
 clean	:
 	rm -rf $(OBJS) $(BONUS_OBJS)
 
 fclean	: clean
 	rm -rf $(NAME)
+	rm -rf $(BONUS)
 re:
 	make fclean
 	make all
