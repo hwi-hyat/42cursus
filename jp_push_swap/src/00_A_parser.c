@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   00_A_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 20:10:17 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/11/10 21:16:37 by siykim           ###   ########.fr       */
+/*   Updated: 2022/11/16 22:09:36 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,10 @@ static void	check_input(int argc, char *argv[])
 	while (i < argc)
 	{
 		idx = 0;
-		while (argv[i][idx] != '\0')
+		while (argv[i][idx])
 		{
-			if ((argv[i][idx] >= '0' && argv[i][idx] <= '9')
-				|| argv[i][idx] == ' ' || argv[i][idx] == '-')
-				;
-			else
+			if (!((argv[i][idx] >= '0' && argv[i][idx] <= '9')
+				|| argv[i][idx] == ' ' || argv[i][0] == '-'))
 				ft_errors();
 			idx += 1;
 		}
