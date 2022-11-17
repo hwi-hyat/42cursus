@@ -6,7 +6,7 @@
 #    By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/06 15:29:29 by jeounpar          #+#    #+#              #
-#    Updated: 2022/11/11 15:44:53 by siykim           ###   ########.fr        #
+#    Updated: 2022/11/17 01:15:27 by siykim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ SRCS		=	./src/00_A_parser.c \
 				./src/03_rotate_opertaion.c \
 				./src/03_swap_operation.c \
 				./src/99_errors.c \
-				./src/99_ft_atoi.c \
 				./src/99_ft_split.c \
 				./src/main.c
 

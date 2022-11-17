@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   array_validation.c                                 :+:      :+:    :+:   */
+/*   00_B_array_validation.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 16:13:37 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/11/10 21:18:03 by siykim           ###   ########.fr       */
+/*   Updated: 2022/11/17 01:17:41 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	count_int_nums(int argc, char *argv[])
 	return (result);
 }
 
-int	check_duplicated(t_arr *arr)
+int	check_repeat(t_arr *arr)
 {
 	int	i;
 	int	j;

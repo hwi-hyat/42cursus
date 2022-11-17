@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 20:10:17 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/11/16 22:09:36 by siykim           ###   ########.fr       */
+/*   Updated: 2022/11/17 01:17:41 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,38 +43,40 @@ static void	alloc_arr(int argc, char *argv[], t_arr *arr)
 		exit(1);
 }
 
-static int	max_min_int(long long num)
+int	a_to_i(const char *str)
 {
-	if (num > 2147483647 || num < -2147483648)
-		ft_errors();
-	return ((int)num);
+	int	i;
+	int	neg;
+	int	out;
+
+	i = 0;
+	neg = 1;
+	out = 0;
+	while (str[i] == ' ' || (9 <= str[i] && str[i] <= 13))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+		if (str[i++] == '-')
+			neg = -1;
+	while ('0' <= str[i] && str[i] <= '9')
+	{
+		out *= 10;
+		out += str[i++] - '0';
+	}
+	return (neg * out);
 }
 
 static int	str_to_int(int argc, char *argv[], t_arr *arr)
 {
-	char		**voca;
 	int			i;
-	int			idx;
 	int			j;
 
 	i = 1;
 	j = arr->len - 1;
 	while (i < argc)
 	{
-		voca = ft_split(argv[i], ' ');
-		if (voca == NULL)
-			return (0);
-		if (voca[0] == NULL)
-			return (ft_nullexeption(voca));
-		idx = 0;
-		while (voca[idx] != NULL)
-		{
-			arr->rst[j] = max_min_int(ft_atoi(voca[idx]));
-			idx += 1;
-			j -= 1;
-		}
-		free_alloc(voca);
-		i += 1;
+		arr->rst[j] = a_to_i(argv[i]);
+		j -= 1;
+		i++;
 	}
 	return (1);
 }
@@ -87,7 +89,7 @@ void	ft_parse(int argc, char *argv[], t_arr *arr)
 	check_input(argc, argv);
 	alloc_arr(argc, argv, arr);
 	a = str_to_int(argc, argv, arr);
-	b = check_duplicated(arr);
+	b = check_repeat(arr);
 	if (a == 0 || b == 0)
 	{
 		free(arr->rst);

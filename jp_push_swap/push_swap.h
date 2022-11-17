@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 16:24:15 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/11/10 21:24:41 by siykim           ###   ########.fr       */
+/*   Updated: 2022/11/17 01:17:41 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,8 @@ int			cnt_word(char *str, char set);
 void		ft_errors(void);
 void		free_alloc(char **str);
 char		**ft_split(char const *s, char c);
-long long	ft_atoi(const char *nptr);
 int			count_int_nums(int argc, char *argv[]);
-int			check_duplicated(t_arr *arr);
+int			check_repeat(t_arr *arr);
 int			ft_nullexeption(char **voca);
 
 int			*set_pivot(t_arr *arr, int r);
