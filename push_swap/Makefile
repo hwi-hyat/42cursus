@@ -5,20 +5,10 @@
 #                                                     +:+ +:+         +:+      #
 #    By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/04/20 01:34:26 by siykim            #+#    #+#              #
-#    Updated: 2022/09/07 18:42:29 by siykim           ###   ########.fr        #
+#    Created: 2022/03/06 15:29:29 by jeounpar          #+#    #+#              #
+#    Updated: 2022/11/17 01:15:27 by siykim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-SRCS		=	push_swap.c				\
-				utilities.c				\
-				00_stack.c				\
-				00_stack_ops1.c			\
-				00_stack_ops2.c			\
-				00_stack_ops_executor.c	\
-				01_sort.c				
-
-OBJS		=	${SRCS:.c=.o}
 
 NAME		=	push_swap
 
@@ -26,22 +16,33 @@ CC			=	cc
 
 CFLAGS		=	-Wall -Wextra -Werror
 
-#.c.o:
-#	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+SRCS		=	./src/00_A_parser.c \
+				./src/00_B_array_validation.c \
+				./src/01_A_solve.c \
+				./src/01_B_random_case.c \
+				./src/01_C_three_random_case.c \
+				./src/01_D_five_random_case.c \
+				./src/01_E_quick_sort.c \
+				./src/03_opertaion_with_output.c \
+				./src/03_push_operation.c \
+				./src/03_reverse_rotate_opertaion.c \
+				./src/03_rotate_opertaion.c \
+				./src/03_swap_operation.c \
+				./src/99_errors.c \
+				./src/99_ft_split.c \
+				./src/main.c
 
-${NAME}: $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+OBJECTS		=	$(SRCS:.c=.o)
 
-all: ${NAME}
+all			: $(NAME)
 
-clean:
-	rm -f ${OBJS}
+$(NAME)		: $(OBJECTS)
+		$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
 
-fclean: clean
-	rm -f ${NAME}
+clean		:
+		rm -f $(OBJECTS)
 
-re: 
-	make fclean
-	make all
+fclean		: clean
+		rm -f $(NAME)
 
-.PHONY: all clean fclean re
+re			: fclean all

@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 20:10:17 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/11/17 01:17:41 by siykim           ###   ########.fr       */
+/*   Updated: 2022/11/17 16:52:00 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ static void	alloc_arr(int argc, char *argv[], t_arr *arr)
 		exit(1);
 }
 
-int	a_to_i(const char *str)
+long long	a_to_i(const char *str)
 {
-	int	i;
-	int	neg;
-	int	out;
+	int			i;
+	int			neg;
+	long long	out;
 
 	i = 0;
 	neg = 1;
@@ -62,19 +62,23 @@ int	a_to_i(const char *str)
 		out *= 10;
 		out += str[i++] - '0';
 	}
-	return (neg * out);
+	return ((long long)neg * out);
 }
 
 static int	str_to_int(int argc, char *argv[], t_arr *arr)
 {
 	int			i;
 	int			j;
+	long long	tmp;
 
 	i = 1;
 	j = arr->len - 1;
 	while (i < argc)
 	{
-		arr->rst[j] = a_to_i(argv[i]);
+		tmp = a_to_i(argv[i]);
+		if (tmp > 2147483647 || tmp < -2147483648)
+			return (0);
+		arr->rst[j] = (int)tmp;
 		j -= 1;
 		i++;
 	}
