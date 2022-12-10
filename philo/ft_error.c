@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 15:18:36 by siykim            #+#    #+#             */
-/*   Updated: 2022/12/10 16:24:03 by siykim           ###   ########.fr       */
+/*   Updated: 2022/12/10 17:13:44 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	how_to_use(void)
 {
-	printf("./philo number_of_philosophers [time to die] [time to eat]");
+	printf("./philo [number_of_philosophers] [time to die] [time to eat]");
 	printf(" [time to sleep] [number_of_times_each_philosopher_must_eat]\n");
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 15:19:49 by siykim            #+#    #+#             */
-/*   Updated: 2022/12/10 16:25:33 by siykim           ###   ########.fr       */
+/*   Updated: 2022/12/10 17:18:08 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	p_printf(t_info *info, int p_id, char *str)
 	pthread_mutex_lock(&(info->buffer_mutex));
 	if (!(info->die_check))
 	{
-		printf("%lld\t%d %s\n", get_time() - info->start_time,
+		printf("%lldms\t%d %s\n", get_time() - info->start_time,
 			p_id + 1, str);
 	}
 	pthread_mutex_unlock(&(info->buffer_mutex));

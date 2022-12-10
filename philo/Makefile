@@ -6,7 +6,7 @@
 #    By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/10 16:33:15 by siykim            #+#    #+#              #
-#    Updated: 2022/12/10 16:33:16 by siykim           ###   ########.fr        #
+#    Updated: 2022/12/10 17:14:55 by siykim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ $(NAME) : $(OBJS)
 
 clean:
 	rm -f $(OBJS)
-  
+
 fclean: clean
 	rm -f $(NAME)
 
