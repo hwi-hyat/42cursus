@@ -24,10 +24,13 @@ void Harl::error(void) {
 	std::cout << "ERROR: This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
-void Harl::complain(std::string level) {
-	void (Harl::*f[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-	std::string level_arr[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+void Harl::whatthehellisproblemwithyou(void) {
+	std::cout << "Probably complaining about insignificant problems" << std::endl;
+}
 
+void Harl::complain(std::string level) {
+	void (Harl::*f[5])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error, &Harl::whatthehellisproblemwithyou};
+	std::string level_arr[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	
 	for(int i = 0; i < 4; i++) {
 		if(level_arr[i] == level) {
@@ -35,4 +38,5 @@ void Harl::complain(std::string level) {
 			return;
 		}
 	}
+	(this->*f[4])();
 }

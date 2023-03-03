@@ -13,6 +13,7 @@ class Harl {
 		Harl(void);
 		~Harl(void);
 		void complain(std::string level);
+		void whatthehellisproblemwithyou(void);
 };
 
 #endif

@@ -1,11 +1,13 @@
 #include"Harl.hpp"
 
-int main() {
+int main(int argc, char **argv) {
 	Harl harlharl;
+	if(argc != 2) {
+		harlharl.whatthehellisproblemwithyou();
+		return 0;
+	}
 
-	harlharl.complain("DEBUG");
-	harlharl.complain("INFO");
-	harlharl.complain("WARNING");
-	harlharl.complain("ERROR");
+	harlharl.complain(argv[1]);
+	std::cout << "what";
 	return 0;
 }

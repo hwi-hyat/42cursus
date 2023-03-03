@@ -1,5 +1,9 @@
 #include"Weapon.hpp"
 
+Weapon::Weapon(void): type("undefined") {
+
+}
+
 Weapon::Weapon(std::string type): type(type) {
 
 }

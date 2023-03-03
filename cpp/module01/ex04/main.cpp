@@ -2,12 +2,9 @@
 #include<fstream>
 #include<string>
 
-void write(std::string buffer, char *filename, char *s1, char *s2) {
+void write(std::string buffer, std::string sfilename, std::string ss1, std::string ss2) {
 	std::ofstream writefile;
 	std::string newfilename;
-	std::string sfilename(filename);
-	std::string ss1(s1);
-	std::string ss2(s2);
 	int index = 0;
 
 	newfilename = sfilename + ".replace";
@@ -28,12 +25,12 @@ void write(std::string buffer, char *filename, char *s1, char *s2) {
 	writefile.close();
 }
 
-std::string read(char *filename) {
+std::string read(std::string sfilename) {
 	std::ifstream readfile;
 	char char_buf;
 	std::string buffer;
 
-	readfile.open(filename);
+	readfile.open(sfilename);
 	if(readfile.fail())	{
 		std::cerr << "There is something wrong with file :(" << std::endl;
 		std::exit(1);
@@ -48,13 +45,21 @@ std::string read(char *filename) {
 
 int main(int argc, char **argv) {
 	std::string buffer;
+	std::string sfilename(argv[1]);
+	std::string ss1(argv[2]);
+	std::string ss2(argv[3]);
 
 	if(argc != 4) {
 		std::cerr << "Format error" << std::endl;
 		return 1;
 	}
 
-	buffer = read(argv[1]);
-	write(buffer, argv[1], argv[2], argv[3]);
+	if(argv[2] == NULL || ss1.length() == 0) {
+		std::cout << "s1 shouldn't be empty or NULL!" << std::endl;
+		return 1;
+	}
+
+	buffer = read(sfilename);
+	write(buffer, sfilename, ss1, ss2);
 	return 0;
 }
