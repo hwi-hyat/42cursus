@@ -1,10 +1,10 @@
-NAME	= ex00
+NAME	= ex03
 SRCS	= main.cpp\
-		Animal.cpp\
-		Dog.cpp\
-		Cat.cpp\
-		WrongAnimal.cpp\
-		WrongCat.cpp
+		MeteriaSource.cpp\
+		AMateria.cpp\
+		Character.cpp\
+		Cure.cpp\
+		Ice.cpp
 		
 OBJS	= $(SRCS:.cpp=.o)
 CC		= c++
