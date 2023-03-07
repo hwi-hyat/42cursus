@@ -24,8 +24,20 @@ int main()
 	delete j;//should not create a leak
 	delete i;
 
-	// Animal a;
-	// a.makeSound();
+	Cat *a = new Cat();
+	Cat *b = new Cat();
 
+	a->set_idea_from_cat(0, "Idea 0");
+	*a = *b;
+	b->set_idea_from_cat(0, "Idea 1111111");
+
+	std::cout << "a's [0]" << a->get_idea_from_cat(0) << std::endl;
+	std::cout << "b's [0]" << b->get_idea_from_cat(0) << std::endl;
+
+	delete a;
+	delete b;
+
+	// Animal aa("Animal");
+	// aa.makeSound();
 	return 0;
 }

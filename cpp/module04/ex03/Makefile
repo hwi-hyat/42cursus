@@ -1,6 +1,6 @@
 NAME	= ex03
 SRCS	= main.cpp\
-		MeteriaSource.cpp\
+		MateriaSource.cpp\
 		AMateria.cpp\
 		Character.cpp\
 		Cure.cpp\

@@ -31,3 +31,13 @@ void Dog::makeSound() const
 {
 	std::cout << "Dog " << this->_type << " made sound, woof woof" << std::endl;
 }
+
+void Dog::set_idea_from_dog(int i, std::string str) const
+{
+	this->_brain->set_idea(i, str);
+}
+
+std::string Dog::get_idea_from_dog(int i) const
+{
+	return this->_brain->get_idea(i);
+}

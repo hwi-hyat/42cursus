@@ -31,3 +31,13 @@ void Cat::makeSound() const
 {
 	std::cout << "Cat " << this->_type << " made sound, meow" << std::endl;
 }
+
+void Cat::set_idea_from_cat(int i, std::string str) const
+{
+	this->_brain->set_idea(i, str);
+}
+
+std::string Cat::get_idea_from_cat(int i) const
+{
+	return this->_brain->get_idea(i);
+}
