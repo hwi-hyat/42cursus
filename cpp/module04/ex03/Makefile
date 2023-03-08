@@ -7,17 +7,17 @@ SRCS	= main.cpp\
 		Ice.cpp
 		
 OBJS	= $(SRCS:.cpp=.o)
-CC		= c++
+CPP		= c++
 RM		= rm -f
-FLAGS	= -Wall -Werror -Wextra -std=c++98
+CPPFLAGS	= -Wall -Werror -Wextra -std=c++98
 
 %.o:			%.c
-				$(CC) $(CFLAGS) -c $< -o $@
+				$(CPP) $(CPPFLAGS) -c $< -o $@
 
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				$(CC) $(FLAGS) $^ -o $@
+				$(CPP) $(CPPFLAGS) $^ -o $@
 
 clean:
 				$(RM) $(OBJS)
