@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 15:00:09 by cclaude           #+#    #+#             */
-/*   Updated: 2023/05/11 11:52:09 by siykim           ###   ########.fr       */
+/*   Updated: 2023/05/16 00:41:38 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ typedef struct s_map
 	char			**tab;
 	int				x;
 	int				y;
-	int				spr;
 }				t_map;
 
 typedef struct s_tex
@@ -84,7 +83,6 @@ typedef struct s_tex
 	unsigned int	*s;
 	unsigned int	*e;
 	unsigned int	*w;
-	unsigned int	*i;
 	unsigned int	c;
 	unsigned int	f;
 }				t_tex;
@@ -148,29 +146,28 @@ typedef struct s_info
 	t_stk			*stk;
 }				t_info;
 
-void			ft_init(t_info *f);
-int				ft_cubed(t_info *f, char *mapname);
-void			ft_draw(t_info *f);
+void			initiate(t_info *f);
+int				game(t_info *f, char *mapname);
+void			display(t_info *f);
 
-int				ft_parse(t_info *s, char *mapname);
+int				parse(t_info *s, char *mapname);
 int				get_next_line(int fd, char **line);
-int				ft_line(t_info *s, char *line);
+int				line_by_line(t_info *s, char *line);
 
-int				ft_map(t_info *s, char *line, int *i);
-char			*ft_slab(t_info *s, char *line, int *i);
-int				ft_slablen(t_info *s, char *line);
+int				map(t_info *s, char *line, int *i);
+char			*line_to_map(char *line, int *i);
+int				line_len(char *line);
 int				ft_texture(t_info *s, unsigned int **adr, char *line, int *i);
 int				ft_xpm(t_info *s, unsigned int **adr, char *file);
 
-int				ft_slist(t_info *s);
 void			ft_pos(t_info *s);
 int				ft_colors(unsigned int *color, char *line, int *i);
 int				ft_res(t_info *s, char *line, int *i);
 
-int				ft_parcheck(t_info *s);
-int				ft_mapcheck(t_info *s);
-int				ft_savecheck(char *arg, char *save);
-int				ft_namecheck(char *arg, char *ext);
+int				check_mapname(char *arg, char *ext);
+int				check_surrounding(t_info *s, int y, int x);
+int				check_map(t_info *s);
+int				check_elements(t_info *s);
 
 int				ft_key(int key, void *arg);
 void			ft_rotate(t_info *s, double c);
@@ -189,9 +186,6 @@ int				ft_size(t_info *s);
 void			ft_column(t_info *s, int start);
 unsigned int	ft_pixel(t_info *s, double i);
 
-void			ft_sprite(t_info *s);
-void			ft_sorder(t_info *s);
-void			ft_slocate(t_info *s, double dirx, double diry, double dist);
 void			ft_sdraw(t_info *s, int loc, double dist);
 unsigned int	ft_spixel(t_info *s, int index, unsigned int col);
 
@@ -201,8 +195,8 @@ char			*buf_join(char *stock, char *buf);
 char			*stock_trim(char *stock);
 char			*get_line(char *stock);
 
-int				ft_atoi(char *line, int *i);
-int				ft_spaceskip(char *line, int *i);
+int				a_to_i(char *line, int *i);
+int				ws_pass(char *line, int *i);
 int				print_error(int code);
 
 #endif

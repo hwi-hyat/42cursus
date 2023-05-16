@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 19:37:22 by cclaude           #+#    #+#             */
-/*   Updated: 2023/05/11 11:10:57 by siykim           ###   ########.fr       */
+/*   Updated: 2023/05/13 23:15:57 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void			ft_column(t_info *s, int size)
 	s->ray.i -= s->win.x * s->win.y;
 }
 
-int				ft_size(t_info *s)
+int	ft_size(t_info *s)
 {
 	double	correc;
 	double	fisheye;
@@ -73,7 +73,7 @@ int				ft_size(t_info *s)
 	return (round(s->win.y / correc));
 }
 
-void			ft_stock(t_info *s)
+void	ft_stock(t_info *s)
 {
 	s->stk[s->ray.i].x = s->ray.x;
 	s->stk[s->ray.i].y = s->ray.y;

@@ -6,27 +6,13 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 17:16:06 by cclaude           #+#    #+#             */
-/*   Updated: 2023/05/11 11:51:29 by siykim           ###   ########.fr       */
+/*   Updated: 2023/05/16 00:36:25 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_savecheck(char *arg, char *save)
-{
-	int	i;
-
-	i = 0;
-	while (arg[i] == save[i])
-	{
-		if (arg[i] == '\0' && save[i] == '\0')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int		ft_namecheck(char *arg, char *ext)
+int	check_mapname(char *arg, char *ext)
 {
 	int	i;
 
@@ -39,7 +25,33 @@ int		ft_namecheck(char *arg, char *ext)
 	return (0);
 }
 
-int		ft_mapcheck(t_info *s)
+int	check_surrounding(t_info *s, int y, int x)
+{
+	int	ty;
+	int	tx;
+	int	i;
+	int	j;
+
+	i = -1;
+	while (i <= 1)
+	{
+		ty = i + y;
+		j = -1;
+		while (j <= 1)
+		{
+			tx = j + x;
+			if (ty < 0 || tx < 0 || ty >= s->map.y || tx >= s->map.x)
+				return (0);
+			if (!(s->map.tab[ty][tx] == '1' || s->map.tab[ty][tx] == '0'))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	check_map(t_info *s)
 {
 	int		i;
 	int		j;
@@ -51,14 +63,9 @@ int		ft_mapcheck(t_info *s)
 		j = 0;
 		while (j < s->map.x)
 		{
-			if (s->map.tab[i][j] != '1' && i == 0)
-				return (-1);
-			else if (s->map.tab[i][j] != '1' && i == s->map.y - 1)
-				return (-1);
-			else if (s->map.tab[i][j] != '1' && j == 0)
-				return (-1);
-			else if (s->map.tab[i][j] != '1' && j == s->map.x - 1)
-				return (-1);
+			if (s->map.tab[i][j] == '0')
+				if (check_surrounding(s, i, j) == 0)
+					return (-1);
 			j++;
 		}
 		i++;
@@ -66,12 +73,12 @@ int		ft_mapcheck(t_info *s)
 	return (1);
 }
 
-int		ft_parcheck(t_info *s)
+int	check_elements(t_info *s)
 {
 	if (s->win.x <= 0 || s->win.y <= 0)
 		return (print_error(-14));
-	else if ((s->tex.n == NULL || s->tex.s == NULL || s->tex.e == NULL)
-			|| (s->tex.w == NULL || s->tex.i == NULL))
+	else if (s->tex.n == NULL || s->tex.s == NULL
+		|| s->tex.e == NULL || s->tex.w == NULL)
 		return (print_error(-15));
 	else if (s->tex.c == NONE || s->tex.f == NONE)
 		return (print_error(-16));
@@ -79,7 +86,7 @@ int		ft_parcheck(t_info *s)
 		return (print_error(-17));
 	else if (s->err.p > 1)
 		return (print_error(-18));
-	else if (ft_mapcheck(s) == -1)
+	else if (check_map(s) == -1)
 		return (print_error(-19));
 	return (1);
 }

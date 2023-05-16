@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 19:32:10 by cclaude           #+#    #+#             */
-/*   Updated: 2023/05/11 11:11:01 by siykim           ###   ########.fr       */
+/*   Updated: 2023/05/14 00:51:31 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	ft_ver(t_info *s)
 	y = s->pos.y + (x - s->pos.x) * (s->ray.y / s->ray.x);
 	while ((int)floor(y) > 0 && (int)floor(y) < s->map.y)
 	{
+		if ((int)floor(y) == s->map.y)
+			return ;
 		if (s->map.tab[(int)floor(y)][(int)(x - 1 + s->ray.v)] == '1')
 		{
 			s->hit.x = x;
@@ -71,6 +73,8 @@ void	ft_hor(t_info *s)
 	x = s->pos.x + (y - s->pos.y) * (s->ray.x / s->ray.y);
 	while ((int)floor(x) > 0 && (int)floor(x) < s->map.x)
 	{
+		if ((int)(y - 1 + s->ray.w) == s->map.y)
+			return ;
 		if (s->map.tab[(int)(y - 1 + s->ray.w)][(int)floor(x)] == '1')
 		{
 			if (s->hit.d > hypot(x - s->pos.x, y - s->pos.y))
@@ -105,5 +109,5 @@ void	ft_screen(t_info *s)
 		ft_column(s, ft_size(s));
 		s->ray.i++;
 	}
-	ft_sprite(s);
+	//ft_sprite(s);
 }

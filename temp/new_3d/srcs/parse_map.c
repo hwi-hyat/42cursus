@@ -6,19 +6,19 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 21:41:46 by cclaude           #+#    #+#             */
-/*   Updated: 2023/05/11 17:20:20 by siykim           ###   ########.fr       */
+/*   Updated: 2023/05/16 00:36:32 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_xpm(t_info *s, unsigned int **adr, char *file)
+int	ft_xpm(t_info *s, unsigned int **adr, char *file)
 {
 	int		fd;
 	void	*img;
 	int		tab[5];
 
-	if (ft_namecheck(file, "xpm") == 0)
+	if (check_mapname(file, "xpm") == 0)
 		return (-1);
 	if ((fd = open(file, O_RDONLY)) == -1)
 		return (-1);
@@ -31,7 +31,7 @@ int		ft_xpm(t_info *s, unsigned int **adr, char *file)
 	return (0);
 }
 
-int		ft_texture(t_info *s, unsigned int **adr, char *line, int *i)
+int	ft_texture(t_info *s, unsigned int **adr, char *line, int *i)
 {
 	char	*file;
 	int		j;
@@ -39,7 +39,7 @@ int		ft_texture(t_info *s, unsigned int **adr, char *line, int *i)
 	if (*adr != NULL)
 		return (-7);
 	(*i) += 2;
-	ft_spaceskip(line, i);
+	ws_pass(line, i);
 	j = *i;
 	while (line[*i] != ' ' && line[*i] != '\0')
 		(*i)++;
@@ -55,47 +55,32 @@ int		ft_texture(t_info *s, unsigned int **adr, char *line, int *i)
 	return (j == -1 ? -9 : 0);
 }
 
-int		ft_slablen(t_info *s, char *line)
+int	line_len(char *line)
 {
-	int	i;
 	int	count;
 
-	i = 0;
 	count = 0;
-	while (line[i] != '\0')
-	{
-		if (line[i] == '0' || line[i] == '1' || line[i] == '2')
-			count++;
-		else if (line[i] == 'N' || line[i] == 'S' || line[i] == 'W')
-			count++;
-		else if (line[i] == 'E')
-			count++;
-		i++;
-	}
-	if (s->map.x != 0 && s->map.x != count)
-		return (-1);
+	while (line[count] != '\0')
+		count++;
 	return (count);
 }
 
-char	*ft_slab(t_info *s, char *line, int *i)
+char	*line_to_map(char *line, int *i)
 {
 	char	*slab;
 	int		j;
 
-	if (!(slab = malloc(sizeof(char) * (ft_slablen(s, line) + 1))))
+	slab = malloc(sizeof(char) * (line_len(line) + 1));
+	if (!slab)
 		return (NULL);
 	j = 0;
 	while (line[*i] != '\0')
 	{
 		if ((line[*i] == '0' || line[*i] == '1' || line[*i] == 'N')
-			|| (line[*i] == 'E' || line[*i] == 'S' || line[*i] == 'W'))
+			|| line[*i] == 'E' || line[*i] == 'W' || line [*i] == 'S'
+			|| line [*i] == ' ')
 			slab[j++] = line[*i];
-		else if (line[*i] == '2')
-		{
-			slab[j++] = line[*i];
-			s->map.spr++;
-		}
-		else if (line[*i] != ' ')
+		else
 		{
 			free(slab);
 			return (NULL);
@@ -106,18 +91,21 @@ char	*ft_slab(t_info *s, char *line, int *i)
 	return (slab);
 }
 
-int	ft_map(t_info *s, char *line, int *i)
+int	map(t_info *s, char *line, int *i)
 {
 	char	**tmp;
 	int		j;
 
+	*i = 0;
 	s->err.m = 1;
-	if (!(tmp = malloc(sizeof(char *) * (s->map.y + 2))))
+	tmp = malloc(sizeof(char *) * (s->map.y + 2));
+	if (!tmp)
 		return (-11);
 	j = -1;
 	while (++j < s->map.y)
 		tmp[j] = s->map.tab[j];
-	if ((tmp[s->map.y] = ft_slab(s, line, i)) == NULL)
+	tmp[s->map.y] = line_to_map(line, i);
+	if (tmp[s->map.y] == NULL)
 	{
 		free(tmp);
 		return (-12);
@@ -127,7 +115,7 @@ int	ft_map(t_info *s, char *line, int *i)
 		free(s->map.tab);
 	s->map.tab = tmp;
 	s->map.y++;
-	if ((s->map.x = ft_slablen(s, line)) == -1)
-		return (-13);
+	if (s->map.x < line_len(line))
+		s->map.x = line_len(line);
 	return (0);
 }

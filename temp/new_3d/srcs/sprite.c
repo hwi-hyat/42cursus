@@ -6,7 +6,7 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 18:04:34 by cclaude           #+#    #+#             */
-/*   Updated: 2023/05/11 11:11:01 by siykim           ###   ########.fr       */
+/*   Updated: 2023/05/14 01:03:50 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void			ft_sdraw(t_info *s, int loc, double dist)
 				(j < size && s->stk[loc + i].d > dist))
 		{
 			col = 64 * floor(64 * (double)j / size) + (double)i / size * 64;
-			col = s->tex.i[col];
+			//col = s->tex.i[col];
 			index = loc + i + (s->win.y / 2 + j) * s->win.x;
 			if (index < s->win.x * s->win.y)
 				s->img.adr[index] = ft_spixel(s, index, col);
@@ -61,7 +61,7 @@ void			ft_sdraw(t_info *s, int loc, double dist)
 		j = 0;
 	}
 }
-
+/*
 void			ft_slocate(t_info *s, double dirx, double diry, double dist)
 {
 	double	angle;
@@ -106,7 +106,7 @@ void			ft_sorder(t_info *s)
 
 void			ft_sprite(t_info *s)
 {
-	int		i;
+	//int		i;
 	double	dist;
 
 	dist = hypot(s->dir.x, s->dir.y);
@@ -114,7 +114,7 @@ void			ft_sprite(t_info *s)
 		s->dir.a = acos(s->dir.x / dist) * 180 / M_PI;
 	else
 		s->dir.a = 360 - acos(s->dir.x / dist) * 180 / M_PI;
-	i = 0;
+	//i = 0;
 	while (i < s->map.spr)
 	{
 		s->spr[i].d = hypot(s->spr[i].x - s->pos.x, s->spr[i].y - s->pos.y);
@@ -129,3 +129,4 @@ void			ft_sprite(t_info *s)
 	}
 	free(s->stk);
 }
+*/

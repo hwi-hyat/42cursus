@@ -6,30 +6,30 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 21:41:51 by cclaude           #+#    #+#             */
-/*   Updated: 2023/05/11 11:11:02 by siykim           ###   ########.fr       */
+/*   Updated: 2023/05/16 00:36:36 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_res(t_info *s, char *line, int *i)
+int	ft_res(t_info *s, char *line, int *i)
 {
 	if (s->win.x != 0 || s->win.y != 0)
 		return (-3);
 	(*i)++;
-	s->win.x = ft_atoi(line, i);
-	s->win.y = ft_atoi(line, i);
+	s->win.x = a_to_i(line, i);
+	s->win.y = a_to_i(line, i);
 	if (s->win.x > 2560)
 		s->win.x = 2560;
 	if (s->win.y > 1400)
 		s->win.y = 1400;
-	ft_spaceskip(line, i);
+	ws_pass(line, i);
 	if (s->win.x <= 0 || s->win.y <= 0 || line[*i] != '\0')
 		return (-4);
 	return (0);
 }
 
-int		ft_colors(unsigned int *color, char *line, int *i)
+int	ft_colors(unsigned int *color, char *line, int *i)
 {
 	int	r;
 	int	g;
@@ -38,12 +38,12 @@ int		ft_colors(unsigned int *color, char *line, int *i)
 	if (*color != NONE)
 		return (-5);
 	(*i)++;
-	r = ft_atoi(line, i);
+	r = a_to_i(line, i);
 	(*i)++;
-	g = ft_atoi(line, i);
+	g = a_to_i(line, i);
 	(*i)++;
-	b = ft_atoi(line, i);
-	ft_spaceskip(line, i);
+	b = a_to_i(line, i);
+	ws_pass(line, i);
 	if (line[*i] != '\0' || r > 255 || g > 255 || b > 255)
 		return (-6);
 	*color = r * 256 * 256 + g * 256 + b;
@@ -58,9 +58,9 @@ void	ft_pos(t_info *s)
 
 	i = -1;
 	j = -1;
-	while (++i < s->map.y)
+	while (s->map.tab[++i])
 	{
-		while (++j < s->map.x)
+		while (s->map.tab[i][++j])
 		{
 			c = s->map.tab[i][j];
 			if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
@@ -72,13 +72,14 @@ void	ft_pos(t_info *s)
 				s->dir.y = (c == 'S' || c == 'N') ? 1 : 0;
 				s->dir.y *= (c == 'N') ? -1 : 1;
 				s->err.p++;
+				s->map.tab[i][j] = '0';
 			}
 		}
 		j = -1;
 	}
 }
 
-int		ft_slist(t_info *s)
+/*int	ft_slist(t_info *s)
 {
 	int		i;
 	int		j;
@@ -106,3 +107,4 @@ int		ft_slist(t_info *s)
 	}
 	return (1);
 }
+*/

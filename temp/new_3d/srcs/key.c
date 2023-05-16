@@ -6,13 +6,13 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 19:31:08 by cclaude           #+#    #+#             */
-/*   Updated: 2023/05/11 11:09:50 by siykim           ###   ########.fr       */
+/*   Updated: 2023/05/15 23:17:30 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_close(t_info *s, int win)
+int	ft_close(t_info *s, int win)
 {
 	int	i;
 
@@ -24,7 +24,6 @@ int		ft_close(t_info *s, int win)
 	free(s->tex.s);
 	free(s->tex.e);
 	free(s->tex.w);
-	free(s->tex.i);
 	if (win == 1)
 		mlx_destroy_window(s->mlx.ptr, s->win.ptr);
 	free(s->mlx.ptr);
@@ -40,12 +39,6 @@ void	ft_move(t_info *s, double c)
 	s->pos.y += c * (s->dir.y * SPEED / 100);
 	if (s->map.tab[(int)floor(s->pos.y)][(int)floor(s->pos.x)] == '1')
 		s->pos.y -= c * (s->dir.y * SPEED / 100);
-	if (s->map.tab[(int)floor(s->pos.y)][(int)floor(s->pos.x)] == '2')
-	{
-		s->map.tab[(int)floor(s->pos.y)][(int)floor(s->pos.x)] = '0';
-		s->map.spr--;
-		ft_slist(s);
-	}
 }
 
 void	ft_strafe(t_info *s, double c)
@@ -56,12 +49,6 @@ void	ft_strafe(t_info *s, double c)
 	s->pos.y += c * (s->dir.x * SPEED / 100);
 	if (s->map.tab[(int)floor(s->pos.y)][(int)floor(s->pos.x)] == '1')
 		s->pos.y -= c * (s->dir.x * SPEED / 100);
-	if (s->map.tab[(int)floor(s->pos.y)][(int)floor(s->pos.x)] == '2')
-	{
-		s->map.tab[(int)floor(s->pos.y)][(int)floor(s->pos.x)] = '0';
-		s->map.spr--;
-		ft_slist(s);
-	}
 }
 
 void	ft_rotate(t_info *s, double c)
@@ -75,7 +62,7 @@ void	ft_rotate(t_info *s, double c)
 	s->dir.y /= dist;
 }
 
-int		ft_key(int key, void *arg)
+int	ft_key(int key, void *arg)
 {
 	if (key == ESC)
 		ft_close(arg, 1);
@@ -91,6 +78,7 @@ int		ft_key(int key, void *arg)
 		ft_rotate(arg, -1);
 	else if (key == RIGHT)
 		ft_rotate(arg, 1);
-	ft_draw(arg);
+	display(arg);
+	printf("dir x : %f, dir y : %f, dir a: %f\n", ((t_info *)arg)->dir.x, ((t_info *)arg)->dir.y, ((t_info *)arg)->dir.a);
 	return (1);
 }

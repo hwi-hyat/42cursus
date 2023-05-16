@@ -6,13 +6,13 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 18:01:54 by cclaude           #+#    #+#             */
-/*   Updated: 2023/05/11 11:55:53 by siykim           ###   ########.fr       */
+/*   Updated: 2023/05/15 23:17:12 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_spaceskip(char *line, int *i)
+int	ws_pass(char *line, int *i)
 {
 	while ((line[*i] == ' ' || line[*i] == '\t' || line[*i] == '\n')
 		|| (line[*i] == '\r' || line[*i] == '\v' || line[*i] == '\f'))
@@ -20,12 +20,12 @@ int	ft_spaceskip(char *line, int *i)
 	return (1);
 }
 
-int	ft_atoi(char *line, int *i)
+int	a_to_i(char *line, int *i)
 {
 	int	num;
 
 	num = 0;
-	ft_spaceskip(line, i);
+	ws_pass(line, i);
 	while (line[*i] >= '0' && line[*i] <= '9')
 	{
 		num = num * 10 + (line[*i] - 48);
@@ -34,18 +34,18 @@ int	ft_atoi(char *line, int *i)
 	return (num);
 }
 
-int	print_error2(int code)
+void	print_error2(int code)
 {
 	if (code == -10)
 		write(2, "error : Invalid line in file\n", 29);
 	else if (code == -11)
-		write(2, "error : Malloc fail (map table)\n", 32);
+		write(2, "error : Memory allocation failed (map table)\n", 32);
 	else if (code == -12)
 		write(2, "error : Invalid map\n", 20);
 	else if (code == -13)
-		write(2, "error : Map isn't a rectangle\n", 30);
+		write(2, "error : Map isn't a rectangle\n", 30);//
 	else if (code == -14)
-		write(2, "error : No resolution specified\n", 32);
+		write(2, "error : No resolution specified\n", 32);//
 	else if (code == -15)
 		write(2, "error : Missing texture\n", 24);
 	else if (code == -16)
@@ -63,13 +63,13 @@ int	print_error(int code)
 	if (code <= -10)
 		print_error2(code);
 	else if (code == -1)
-		write(2, "error : Couldn't open file (FD)\n", 32);
+		write(2, "error : CANNOT OPEN FILE: FD\n", 32);
 	else if (code == -2)
-		write(2, "error : Couldn't parse file (GNL)\n", 34);
+		write(2, "error : ERROR OCCURED IN GNL\n", 34);
 	else if (code == -3)
-		write(2, "error : Resolution specified twice\n", 35);
+		write(2, "error : Resolution specified twice\n", 35);//
 	else if (code == -4)
-		write(2, "error : Invalid resolution\n", 27);
+		write(2, "error : Invalid resolution\n", 27);//
 	else if (code == -5)
 		write(2, "error : Floor/ceiling specified twice\n", 38);
 	else if (code == -6)
@@ -77,7 +77,7 @@ int	print_error(int code)
 	else if (code == -7)
 		write(2, "error : Texture path specified twice\n", 37);
 	else if (code == -8)
-		write(2, "error : Malloc fail (texture path)\n", 35);
+		write(2, "error : Memory allocation failed (texture path)\n", 35);
 	else if (code == -9)
 		write(2, "error : Invalid texture image\n", 30);
 	return (-1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gnl.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 16:53:10 by cclaude           #+#    #+#             */
-/*   Updated: 2019/12/13 21:52:12 by cclaude          ###   ########.fr       */
+/*   Updated: 2023/05/14 01:06:32 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*error(char *stock)
 	return (NULL);
 }
 
-int		newline_check(char *stock, int read_size)
+int	newline_check(char *stock, int read_size)
 {
 	int	i;
 
@@ -48,7 +48,8 @@ char	*buf_join(char *stock, char *buf)
 		i++;
 	while (buf[j] != '\0')
 		j++;
-	if (!(new = malloc(sizeof(char) * (i + j + 1))))
+	new = malloc(sizeof(char) * (i + j + 1));
+	if (!new)
 		return (error(stock));
 	i = 0;
 	j = 0;
@@ -75,7 +76,8 @@ char	*stock_trim(char *stock)
 		i++;
 	while (stock[i++] != '\0')
 		j++;
-	if (!(trimmed = malloc(sizeof(char) * j + 1)))
+	trimmed = malloc(sizeof(char) * j + 1);
+	if (!trimmed)
 		return (error(stock));
 	i = 0;
 	j = 0;
@@ -99,7 +101,8 @@ char	*get_line(char *stock)
 	i = 0;
 	while (stock[i] != '\n' && stock[i] != '\0')
 		i++;
-	if (!(line = malloc(sizeof(char) * i + 1)))
+	line = malloc(sizeof(char) * i + 1);
+	if (!line)
 		return (error(stock));
 	i = 0;
 	while (stock[i] != '\n' && stock[i] != '\0')

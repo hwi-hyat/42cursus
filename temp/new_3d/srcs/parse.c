@@ -6,20 +6,20 @@
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 23:01:17 by cclaude           #+#    #+#             */
-/*   Updated: 2023/05/11 17:13:44 by siykim           ###   ########.fr       */
+/*   Updated: 2023/05/16 00:36:44 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_line(t_info *s, char *line)
+int	line_by_line(t_info *s, char *line)
 {
 	int		i;
 
 	i = 0;
-	ft_spaceskip(line, &i);
+	ws_pass(line, &i);
 	if ((line[i] == '1' || s->err.m == 1) && line[i] != '\0')
-		s->err.n = ft_map(s, line, &i);
+		s->err.n = map(s, line, &i);
 	else if (line[i] == 'R' && line[i + 1] == ' ')
 		s->err.n = ft_res(s, line, &i);
 	else if (line[i] == 'N' && line[i + 1] == 'O' && line[i + 2] == ' ')
@@ -30,13 +30,11 @@ int		ft_line(t_info *s, char *line)
 		s->err.n = ft_texture(s, &s->tex.w, line, &i);
 	else if (line[i] == 'E' && line[i + 1] == 'A' && line[i + 2] == ' ')
 		s->err.n = ft_texture(s, &s->tex.e, line, &i);
-	else if (line[i] == 'S' && line[i + 1] == ' ')
-		s->err.n = ft_texture(s, &s->tex.i, line, &i);
 	else if (line[i] == 'F' && line[i + 1] == ' ')
 		s->err.n = ft_colors(&s->tex.f, line, &i);
 	else if (line[i] == 'C' && line[i + 1] == ' ')
 		s->err.n = ft_colors(&s->tex.c, line, &i);
-	if (ft_spaceskip(line, &i) && s->err.n == 0 && line[i] != '\0')
+	if (ws_pass(line, &i) && s->err.n == 0 && line[i] != '\0')
 		return (print_error(-10));
 	return (s->err.n < 0 ? print_error(s->err.n) : 0);
 }
@@ -70,7 +68,26 @@ int	get_next_line(int fd, char **line)
 	return (1);
 }
 
-int		ft_parse(t_info *s, char *mapname)
+void printer(t_map map)
+{
+	int i = 0, j = 0;
+	while(map.tab[i])
+	{
+		while(map.tab[i][j])
+		{
+			printf("%c", map.tab[i][j]);
+			j++;
+		}
+		if(map.tab[i][j] == '\0')
+			printf("end of line");
+		printf("\n");
+		j = 0;
+		i++;
+	}
+	printf("map.y %d map.x %d\n", map.y, map.x);
+}
+
+int	parse(t_info *s, char *mapname)
 {
 	char	*line;
 	int		fd;
@@ -83,7 +100,7 @@ int		ft_parse(t_info *s, char *mapname)
 	while (ret == 1)
 	{
 		ret = get_next_line(fd, &line);
-		if (ft_line(s, line) == -1)
+		if (line_by_line(s, line) == -1)
 			ret = -1;
 		free(line);
 	}
@@ -92,6 +109,6 @@ int		ft_parse(t_info *s, char *mapname)
 		return (print_error(ret + 1));
 	ft_pos(s);
 	s->spr = NULL;
-	ft_slist(s);
-	return (ft_parcheck(s));
+	printer(s->map);//
+	return (check_elements(s));
 }

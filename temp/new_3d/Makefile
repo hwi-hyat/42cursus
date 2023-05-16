@@ -6,7 +6,7 @@
 #    By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 19:43:51 by siykim            #+#    #+#              #
-#    Updated: 2023/05/11 11:37:17 by siykim           ###   ########.fr        #
+#    Updated: 2023/05/13 23:10:25 by siykim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC		=	cc
 
 CFLAGS	=	-Wall -Wextra -Werror
 
-SRCS	=	srcs/cub3d.c \
+SRCS	=	srcs/main.c \
 			srcs/parse.c \
 			srcs/parse_map.c \
 			srcs/parse_tools.c \
@@ -31,7 +31,7 @@ SRCS	=	srcs/cub3d.c \
 OBJS	=	$(SRCS:.c=.o)
 
 $(NAME)	:	$(OBJS)
-	$(CC) $(CFLAGS) -L mlx -lmlx -framework OpenGL -framework AppKit $^ -o $(NAME)
+	$(CC) $(CFLAGS) -L mlx -lmlx -framework OpenGL -framework AppKit $^  -g -o $(NAME)
 
 all: $(NAME)
 
