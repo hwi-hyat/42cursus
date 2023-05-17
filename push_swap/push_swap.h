@@ -5,64 +5,58 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/06 16:24:15 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/11/17 17:35:53 by siykim           ###   ########.fr       */
+/*   Created: 2022/07/28 23:24:50 by siykim            #+#    #+#             */
+/*   Updated: 2022/09/07 16:29:55 by siykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdlib.h>
-# include <unistd.h>
+# include<unistd.h>
+# include<stdlib.h>
+# include<stdio.h> // 나중에 지워주자
 
-typedef struct s_arr
+typedef struct s_stack
 {
-	int	*rst;
-	int	len;
-}	t_arr;
+	int	*a;
+	int	*b;
+	int	a_top;
+	int	b_top;
+	int	numbers;
+}	t_stack;
 
-void		ft_parse(int argc, char *argv[], t_arr *arr);
-void		solve(t_arr *a, t_arr *b, int r);
-int			case_one(t_arr *a, t_arr *arr);
-int			case_two(t_arr *a, t_arr *arr);
-int			case_three(t_arr *a, t_arr *arr);
-int			case_four(t_arr *a, t_arr *arr);
-int			case_five(t_arr *a, t_arr *arr);
-void		copy_arr(t_arr *src, t_arr *target);
-int			is_already_sorted(t_arr *arr);
-int			cnt_word(char *str, char set);
-void		ft_errors(void);
-void		free_alloc(char **str);
-char		**ft_split(char const *s, char c);
-int			count_int_nums(int argc, char *argv[]);
-int			check_repeat(t_arr *arr);
-int			ft_nullexeption(char **voca);
-int			*set_pivot(t_arr *arr, int r);
-void		three_random_case(t_arr *arr);
-void		five_random_case(t_arr *a, t_arr *b);
-void		two_random_case(t_arr *a);
-void		p_a(t_arr *a, t_arr *b);
-void		p_b(t_arr *a, t_arr *b);
-void		r_a(t_arr *a);
-void		r_b(t_arr *b);
-void		swap_a(t_arr *a);
-void		swap_b(t_arr *b);
-void		swap_s(t_arr *a, t_arr *b);
-void		push_a(t_arr *a, t_arr *b);
-void		push_b(t_arr *a, t_arr *b);
-void		rr_a(t_arr *a);
-void		rr_b(t_arr *b);
-void		rr_rr(t_arr *a, t_arr *b);
-void		rotate_a(t_arr *a);
-void		rotate_b(t_arr *b);
-void		rotate_rr(t_arr *a, t_arr *b);
-void		copy_arr(t_arr *src, t_arr *target);
-void		three_random_case(t_arr *arr);
-void		quick_sort(int *data, int start, int end);
-void		r_a(t_arr *a);
-void		r_b(t_arr *b);
-void		p_a(t_arr *a, t_arr *b);
-void		p_b(t_arr *a, t_arr *b);
+//00_stack
+void	init_stack(int argc, char **argv, t_stack *stack);
+void 	liberate_stack(t_stack *stack);
+void	fill_stack(char **argv, t_stack *stack);
+
+//00_stack_ops1
+void	swap_a(t_stack *stack);
+void	swap_b(t_stack *stack);
+void	push_a(t_stack *stack);
+void	push_b(t_stack *stack);
+
+//00_stack_ops2
+void	rotate_a(t_stack *stack);
+void	rotate_b(t_stack *stack);
+void	reverse_rotate_a(t_stack *stack);
+void	reverse_rotate_b(t_stack *stack);
+
+//00_stack_ops_executor
+void	exe(char *op, t_stack *stack);
+void	exe_r(char *op, t_stack *stack);
+
+
+//01_sort
+void	sort_main(t_stack *stack);
+
+
+//utilities
+int		a_to_i(const char *str, t_stack *stack);
+int		str_len(char *str);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+void	error(t_stack *stack);
+
 
 #endif

@@ -5,43 +5,42 @@
 #                                                     +:+ +:+         +:+      #
 #    By: siykim <siykim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/04/20 01:34:26 by siykim            #+#    #+#              #
-#    Updated: 2022/09/07 18:42:29 by siykim           ###   ########.fr        #
+#    Created: 2023/05/10 19:43:51 by siykim            #+#    #+#              #
+#    Updated: 2023/05/17 19:16:19 by siykim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	push_swap.c				\
-				utilities.c				\
-				00_stack.c				\
-				00_stack_ops1.c			\
-				00_stack_ops2.c			\
-				00_stack_ops_executor.c	\
-				01_sort.c				
+NAME	=	cub3D
 
-OBJS		=	${SRCS:.c=.o}
+CC		=	cc
 
-NAME		=	push_swap
+CFLAGS	=	-Wall -Wextra -Werror
 
-CC			=	cc
+SRCS	=	srcs/main.c \
+			srcs/parse.c \
+			srcs/parse_map.c \
+			srcs/parse_tools.c \
+			srcs/parse_check.c \
+			srcs/gnl.c \
+			srcs/key.c \
+			srcs/display.c \
+			srcs/display_out.c \
+			srcs/tools.c \
+			srcs/tools2.c 
 
-CFLAGS		=	-Wall -Wextra -Werror
+OBJS	=	$(SRCS:.c=.o)
 
-#.c.o:
-#	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+$(NAME)	:	$(OBJS)
+	$(CC) $(CFLAGS) -L mlx -lmlx -framework OpenGL -framework AppKit $^ -g -o $(NAME)
 
-${NAME}: $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
-
-all: ${NAME}
+all: $(NAME)
 
 clean:
-	rm -f ${OBJS}
+	rm -rf $(OBJS)
 
 fclean: clean
-	rm -f ${NAME}
+	rm -f $(NAME)
 
-re: 
-	make fclean
-	make all
+re: fclean all
 
 .PHONY: all clean fclean re
